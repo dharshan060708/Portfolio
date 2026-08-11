@@ -1,5 +1,5 @@
 import { motion } from "framer-motion"
-import { Mail, GitBranch, Link2, Code, Award, Send, ArrowRight } from "lucide-react"
+import { Mail, GitBranch, Link2, Code, Award, Send, ArrowRight, Copy, Check } from "lucide-react"
 import { profile } from "@/data/portfolio"
 import { containerCustom, section, sectionTitle, sectionSubtitle, card, btnPrimary, btnGhost, inputField } from "@/utils/styles"
 import { useState } from "react"
@@ -7,32 +7,72 @@ import { useState } from "react"
 export function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" })
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle")
+  const [errorMessage, setErrorMessage] = useState("")
+  const [copiedLabel, setCopiedLabel] = useState<string | null>(null)
+
+  const copyToClipboard = (text: string, label: string, e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    navigator.clipboard.writeText(text)
+    setCopiedLabel(label)
+    setTimeout(() => setCopiedLabel(null), 2000)
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!formData.name || !formData.email || !formData.message) {
+      setStatus("error")
+      setErrorMessage("Please fill in all required fields.")
+      return
+    }
+
     setStatus("sending")
-    
-    const mailtoLink = `mailto:${profile.email}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`)}`
-    window.location.href = mailtoLink
-    
-    setTimeout(() => {
+    setErrorMessage("")
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "YOUR_WEB3FORMS_ACCESS_KEY",
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || `Portfolio Contact from ${formData.name}`,
+          message: formData.message,
+          from_name: "Portfolio Inquiry",
+        }),
+      })
+
+      if (response.ok) {
+        setStatus("success")
+        setFormData({ name: "", email: "", subject: "", message: "" })
+      } else {
+        const mailtoLink = `mailto:${profile.email}?subject=${encodeURIComponent(formData.subject || "Portfolio Contact")}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`)}`
+        window.location.href = mailtoLink
+        setStatus("success")
+        setFormData({ name: "", email: "", subject: "", message: "" })
+      }
+    } catch {
+      const mailtoLink = `mailto:${profile.email}?subject=${encodeURIComponent(formData.subject || "Portfolio Contact")}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`)}`
+      window.location.href = mailtoLink
       setStatus("success")
       setFormData({ name: "", email: "", subject: "", message: "" })
-    }, 500)
+    }
   }
 
   const contactItems = [
-    { icon: Mail, label: "Email", value: profile.email, href: `mailto:${profile.email}`, color: "text-primary-500" },
-    { icon: GitBranch, label: "GitHub", value: "DharshanVelumani", href: profile.links.github, color: "text-white" },
-    { icon: Link2, label: "LinkedIn", value: "Dharshan-V", href: profile.links.linkedin, color: "text-blue-400" },
-    { icon: Code, label: "LeetCode", value: "efImqpWfmd", href: profile.links.leetcode, color: "text-orange-500" },
-    { icon: Award, label: "HackerRank", value: "dharshanvelumani", href: profile.links.hackerrank, color: "text-green-500" },
+    { icon: Mail, label: "Email", value: profile.email, href: `mailto:${profile.email}`, copyValue: profile.email, color: "text-primary-500" },
+    { icon: GitBranch, label: "GitHub", value: "DharshanVelumani", href: profile.links.github, copyValue: profile.links.github, color: "text-white" },
+    { icon: Link2, label: "LinkedIn", value: "Dharshan-V", href: profile.links.linkedin, copyValue: profile.links.linkedin, color: "text-blue-400" },
+    { icon: Code, label: "LeetCode", value: "efImqpWfmd", href: profile.links.leetcode, copyValue: profile.links.leetcode, color: "text-orange-500" },
+    { icon: Award, label: "HackerRank", value: "dharshanvelumani", href: profile.links.hackerrank, copyValue: profile.links.hackerrank, color: "text-green-500" },
   ]
 
   return (
-    <section id="contact" className={`${section} relative`}>
-      <div className="absolute inset-0 grid-pattern noise-pattern opacity-50" aria-hidden="true" />
-      
+    <section id="contact" className={`${section} relative section-contain`}>
       <div className={containerCustom} style={{ position: 'relative', zIndex: 1 }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -55,27 +95,45 @@ export function Contact() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="space-y-8"
           >
-            <div className="space-y-6">
+            <div className="space-y-4">
               {contactItems.map((item, index) => (
                 <motion.a
                   key={item.label}
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${card} flex items-center gap-4 group`}
+                  className={`${card} flex items-center gap-4 group p-4 hover:border-primary-500/40`}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 + index * 0.05 }}
                   whileHover={{ x: 4 }}
                 >
                   <div className={`p-3 rounded-lg ${item.color}/10`}>
-                    <item.icon className={`h-6 w-6 ${item.color}`} />
+                    <item.icon className={`h-5 w-5 ${item.color}`} />
                   </div>
-                  <div>
+                  <div className="flex-1 min-w-0">
                     <p className="text-xs font-medium text-dark-500 uppercase tracking-wider">{item.label}</p>
-                    <p className="text-white font-medium">{item.value}</p>
+                    <p className="text-white font-medium truncate text-sm sm:text-base">{item.value}</p>
                   </div>
-                  <ArrowRight className="h-5 w-5 text-dark-500 group-hover:text-primary-400 transition-colors ml-auto" />
+                  
+                  <button
+                    type="button"
+                    onClick={(e) => copyToClipboard(item.copyValue, item.label, e)}
+                    className="p-2 rounded-lg text-dark-400 hover:text-white hover:bg-dark-800 transition-colors"
+                    title={`Copy ${item.label}`}
+                    aria-label={`Copy ${item.label}`}
+                  >
+                    {copiedLabel === item.label ? (
+                      <span className="inline-flex items-center gap-1 text-xs text-green-400 font-sans">
+                        <Check className="h-4 w-4" />
+                        <span className="hidden sm:inline">Copied</span>
+                      </span>
+                    ) : (
+                      <Copy className="h-4 w-4" />
+                    )}
+                  </button>
+
+                  <ArrowRight className="h-4 w-4 text-dark-500 group-hover:text-primary-400 transition-colors hidden sm:block" />
                 </motion.a>
               ))}
             </div>
@@ -166,6 +224,12 @@ export function Contact() {
                 />
               </div>
 
+              {status === "error" && errorMessage && (
+                <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
+                  {errorMessage}
+                </div>
+              )}
+
               <button 
                 type="submit" 
                 disabled={status === "sending"}
@@ -190,7 +254,7 @@ export function Contact() {
               </button>
 
               <p className="text-center text-xs text-dark-500">
-                Opens your default email client with pre-filled details
+                Direct asynchronous message with auto email client fallback
               </p>
             </form>
           </motion.div>

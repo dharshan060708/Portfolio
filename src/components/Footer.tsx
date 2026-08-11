@@ -7,9 +7,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="relative border-t border-dark-800">
-      <div className="absolute inset-0 grid-pattern noise-pattern opacity-50" aria-hidden="true" />
-      
+    <footer className="relative border-t border-dark-800 section-contain">
       <div className={containerCustom} style={{ position: 'relative', zIndex: 1 }}>
         <div className="py-12 lg:py-16">
           <div className="grid lg:grid-cols-4 gap-12 mb-12">

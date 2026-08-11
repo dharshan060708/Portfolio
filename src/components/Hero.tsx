@@ -8,21 +8,19 @@ import { btnPrimary, btnSecondary, btnGhost, containerCustom } from "@/utils/sty
 export function Hero() {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 grid-pattern noise-pattern" aria-hidden="true" />
-      
       <div className="relative z-10 w-full">
         <motion.div 
           className={containerCustom}
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="space-y-8">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
+                transition={{ delay: 0.2, duration: 0.4 }}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-500/10 border border-primary-500/20 text-primary-400 text-sm font-medium"
               >
                 <span className="relative flex h-2 w-2">
@@ -34,36 +32,36 @@ export function Hero() {
 
               <div className="space-y-4">
                 <motion.h1
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.5 }}
+                  transition={{ delay: 0.3, duration: 0.4 }}
                   className="text-5xl lg:text-7xl font-bold tracking-tight leading-[1.1]"
                 >
                   <span className="gradient-text">{profile.name}</span>
                 </motion.h1>
 
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4, duration: 0.5 }}
+                  transition={{ delay: 0.4, duration: 0.4 }}
                   className="text-2xl lg:text-3xl font-medium text-dark-300"
                 >
                   Software Engineer
                 </motion.div>
 
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 0.5 }}
+                  transition={{ delay: 0.45, duration: 0.4 }}
                   className="text-xl lg:text-2xl font-medium text-primary-400"
                 >
                   AI & Automation Developer
                 </motion.div>
 
                 <motion.p
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6, duration: 0.5 }}
+                  transition={{ delay: 0.5, duration: 0.4 }}
                   className="text-lg lg:text-xl text-dark-400 max-w-xl leading-relaxed"
                 >
                   {profile.description}
@@ -71,9 +69,9 @@ export function Hero() {
               </div>
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7, duration: 0.5 }}
+                transition={{ delay: 0.6, duration: 0.4 }}
                 className="flex flex-wrap items-center gap-4"
               >
                 <a href="#projects" className={btnPrimary} aria-label="View Projects">
@@ -102,9 +100,9 @@ export function Hero() {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, duration: 0.5 }}
+                transition={{ delay: 0.7, duration: 0.4 }}
                 className="flex flex-wrap items-center gap-3"
               >
                 {profile.heroTech.map((tech, index) => (
@@ -112,7 +110,7 @@ export function Hero() {
                     key={tech}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.8 + index * 0.05 }}
+                    transition={{ delay: 0.7 + index * 0.04 }}
                     className="badge badgePrimary"
                   >
                     {tech}
@@ -122,9 +120,9 @@ export function Hero() {
             </div>
 
             <motion.div
-              initial={{ opacity: 0, x: 40 }}
+              initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
               className="relative"
             >
               <TerminalVisual />
@@ -135,10 +133,10 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce"
+          transition={{ delay: 1.2, duration: 0.8 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce"
         >
-          <motion.a
+          <a
             href="#about"
             className="text-dark-500 hover:text-dark-300 transition-colors"
             aria-label="Scroll to About"
@@ -146,7 +144,7 @@ export function Hero() {
             <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
-          </motion.a>
+          </a>
         </motion.div>
       </div>
     </section>
@@ -180,12 +178,15 @@ function TerminalVisual() {
       return
     }
 
+    let isMounted = true
+    let timeoutId: ReturnType<typeof setTimeout>
     let lineIndex = 0
     let charIndex = 0
     let currentLine = ""
     let fullText = ""
 
     const typeLine = () => {
+      if (!isMounted) return
       if (lineIndex < lines.length) {
         const line = lines[lineIndex]
         if (charIndex <= line.length) {
@@ -193,14 +194,15 @@ function TerminalVisual() {
           fullText = lines.slice(0, lineIndex).join("\n") + (lineIndex > 0 ? "\n" : "") + currentLine
           setTypedText(fullText)
           charIndex++
-          setTimeout(typeLine, lineIndex === lines.length - 1 && charIndex === line.length ? 100 : 30)
+          timeoutId = setTimeout(typeLine, lineIndex === lines.length - 1 && charIndex === line.length ? 100 : 35)
         } else {
           lineIndex++
           charIndex = 0
-          setTimeout(typeLine, lineIndex === lines.length - 1 ? 2000 : 100)
+          timeoutId = setTimeout(typeLine, lineIndex === lines.length - 1 ? 2500 : 100)
         }
       } else {
-        setTimeout(() => {
+        timeoutId = setTimeout(() => {
+          if (!isMounted) return
           lineIndex = 0
           charIndex = 0
           typeLine()
@@ -214,14 +216,18 @@ function TerminalVisual() {
 
     typeLine()
 
-    return () => clearInterval(cursorInterval)
+    return () => {
+      isMounted = false
+      clearTimeout(timeoutId)
+      clearInterval(cursorInterval)
+    }
   }, [shouldAnimate])
 
   return (
     <div className="relative">
-      <div className="absolute -inset-4 bg-gradient-to-r from-primary-500/10 via-transparent to-red-500/10 rounded-2xl blur-2xl" aria-hidden="true" />
+      <div className="absolute -inset-2 bg-gradient-to-r from-primary-500/10 via-transparent to-red-500/10 rounded-2xl blur-xl pointer-events-none" aria-hidden="true" />
       
-      <div className="relative bg-dark-900/80 border border-dark-700 rounded-xl overflow-hidden shadow-2xl backdrop-blur-sm">
+      <div className="relative bg-dark-900/90 border border-dark-700 rounded-xl overflow-hidden shadow-xl">
         <div className="flex items-center gap-2 px-4 py-3 bg-dark-800 border-b border-dark-700">
           <div className="flex gap-1.5">
             <div className="w-3 h-3 rounded-full bg-red-500" />
@@ -232,15 +238,12 @@ function TerminalVisual() {
         </div>
         
         <div className="p-6 font-mono text-sm text-dark-200 leading-relaxed min-h-[300px] max-h-[400px] overflow-y-auto">
-          <pre className="whitespace-pre-wrap">
+          <pre className="whitespace-pre-wrap font-mono">
             {typedText}
-            <span className={`${cursorVisible ? "opacity-100" : "opacity-0"} animate-blink`}>_</span>
+            <span className={`${cursorVisible ? "opacity-100" : "opacity-0"} text-primary-500`}>_</span>
           </pre>
         </div>
       </div>
-
-      <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-primary-500/5 rounded-full blur-3xl" aria-hidden="true" />
-      <div className="absolute -top-6 -left-6 w-48 h-48 bg-red-500/5 rounded-full blur-3xl" aria-hidden="true" />
     </div>
   )
 }

@@ -59,12 +59,10 @@ const skillDescriptions: Record<string, string> = {
 export function Skills() {
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null)
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation<HTMLDivElement>()
-  const { containerRef, visibleItems } = useStaggeredScrollAnimation<HTMLDivElement>(skillCategories.length, 80)
+  const { containerRef, isVisible: isContainerVisible } = useStaggeredScrollAnimation<HTMLDivElement>()
 
   return (
-    <section id="skills" className={`${section} relative`}>
-      <div className="absolute inset-0 grid-pattern noise-pattern opacity-50" aria-hidden="true" />
-      
+    <section id="skills" className={`${section} relative section-contain`}>
       <div className={containerCustom} style={{ position: 'relative', zIndex: 1 }}>
         <div
           ref={headerRef}
@@ -77,12 +75,12 @@ export function Skills() {
         <div ref={containerRef} className="space-y-12">
           {skillCategories.map((category, catIndex) => {
             const categorySkills = skills[category.key as keyof typeof skills]
-            const { containerRef: skillContainerRef, visibleItems: skillVisibleItems } = useStaggeredScrollAnimation<HTMLDivElement>(categorySkills.length, 50)
             
             return (
               <div
                 key={category.key}
-                className={`scroll-reveal-stagger ${visibleItems.has(catIndex) ? 'is-visible' : ''}`}
+                className={`scroll-reveal-stagger ${isContainerVisible ? 'is-visible' : ''}`}
+                style={{ transitionDelay: `${catIndex * 60}ms` }}
               >
                 <div className="flex items-center gap-3 mb-6">
                   <div className="p-2 rounded-lg bg-primary-500/10">
@@ -94,17 +92,17 @@ export function Skills() {
                   <h3 className="text-xl font-semibold text-white">{category.label}</h3>
                 </div>
                 
-                <div ref={skillContainerRef} className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-3">
                   {categorySkills.map((skill, skillIndex) => (
                     <button
                       key={skill}
-                      className={`${badge} group relative overflow-hidden transition-transform duration-200 hover:scale-[1.02] ${
+                      className={`${badge} group relative overflow-hidden transition-all duration-200 hover:scale-[1.02] ${
                         hoveredSkill === skill ? "bg-primary-500/20 border-primary-500/30 text-primary-300" : ""
-                      } ${skillVisibleItems.has(skillIndex) ? 'opacity-100' : 'opacity-0 translate-y-4'}`}
+                      } ${isContainerVisible ? 'opacity-100' : 'opacity-0 translate-y-2'}`}
                       onMouseEnter={() => setHoveredSkill(skill)}
                       onMouseLeave={() => setHoveredSkill(null)}
                       style={{ 
-                        transitionDelay: `${skillIndex * 50}ms`,
+                        transitionDelay: `${(catIndex * 60) + (skillIndex * 25)}ms`,
                         zIndex: hoveredSkill === skill ? 10 : 1 
                       }}
                     >

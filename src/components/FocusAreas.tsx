@@ -14,9 +14,7 @@ const focusIcons: Record<string, React.ComponentType<{ className?: string }>> = 
 
 export function FocusAreas() {
   return (
-    <section id="skills" className={`${section} relative`}>
-      <div className="absolute inset-0 grid-pattern noise-pattern opacity-50" aria-hidden="true" />
-      
+    <section id="focus" className={`${section} relative section-contain`}>
       <div className={containerCustom} style={{ position: 'relative', zIndex: 1 }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}

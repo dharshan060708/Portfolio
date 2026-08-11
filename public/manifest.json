@@ -1,0 +1,17 @@
+{
+  "name": "Dharshan Velumani Portfolio",
+  "short_name": "DV Portfolio",
+  "description": "Portfolio of Dharshan Velumani — Software Engineer | AI & Automation Developer",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#f59e0b",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

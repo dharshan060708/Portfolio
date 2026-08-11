@@ -7,9 +7,7 @@ export function GitHub() {
   const githubProjects = projects.filter(p => p.github).slice(0, 6)
 
   return (
-    <section id="github" className={`${section} relative`}>
-      <div className="absolute inset-0 grid-pattern noise-pattern opacity-50" aria-hidden="true" />
-      
+    <section id="github" className={`${section} relative section-contain`}>
       <div className={containerCustom} style={{ position: 'relative', zIndex: 1 }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}

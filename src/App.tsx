@@ -40,27 +40,30 @@ export function App() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-dark-950">
-      <Navbar />
-      <main id="main-content">
-        <Hero />
-        {showContent && (
-          <Suspense fallback={<SectionSkeleton />}>
-            <About />
-            <FocusAreas />
-            <Projects />
-            <Skills />
-            <CodingProfiles />
-            <DeveloperTerminal />
-            <Experience />
-            <Education />
-            <Achievements />
-            <GitHub />
-            <Contact />
-          </Suspense>
-        )}
-      </main>
-      <Footer />
+    <div className="min-h-screen bg-dark-950 text-white relative">
+      <div className="fixed inset-0 grid-pattern pointer-events-none opacity-40 z-0" aria-hidden="true" />
+      <div className="relative z-10">
+        <Navbar />
+        <main id="main-content">
+          <Hero />
+          {showContent && (
+            <Suspense fallback={<SectionSkeleton />}>
+              <About />
+              <FocusAreas />
+              <Projects />
+              <Skills />
+              <CodingProfiles />
+              <DeveloperTerminal />
+              <Experience />
+              <Education />
+              <Achievements />
+              <GitHub />
+              <Contact />
+            </Suspense>
+          )}
+        </main>
+        <Footer />
+      </div>
     </div>
   )
 }

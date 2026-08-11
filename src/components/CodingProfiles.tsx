@@ -5,9 +5,7 @@ import { containerCustom, section, sectionTitle, sectionSubtitle, card, badge, b
 
 export function CodingProfiles() {
   return (
-    <section id="coding" className={`${section} relative`}>
-      <div className="absolute inset-0 grid-pattern noise-pattern opacity-50" aria-hidden="true" />
-      
+    <section id="coding" className={`${section} relative section-contain`}>
       <div className={containerCustom} style={{ position: 'relative', zIndex: 1 }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
