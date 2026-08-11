@@ -1,0 +1,16 @@
+import{c as i,j as e,s as l,a as n,m as s,d,e as x,q as o,f as m}from"./index-3fiOnyCD.js";/**
+ * @license lucide-react v0.468.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const p=i("Briefcase",[["path",{d:"M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16",key:"jecpp"}],["rect",{width:"20",height:"14",x:"2",y:"6",rx:"2",key:"i6l2r4"}]]);/**
+ * @license lucide-react v0.468.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const h=i("CircleCheckBig",[["path",{d:"M21.801 10A10 10 0 1 1 17 3.335",key:"yps3ct"}],["path",{d:"m9 11 3 3L22 4",key:"1pflzl"}]]);/**
+ * @license lucide-react v0.468.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const j=i("MapPin",[["path",{d:"M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0",key:"1r0f0z"}],["circle",{cx:"12",cy:"10",r:"3",key:"ilqhr7"}]]);function N(){return e.jsxs("section",{id:"experience",className:`${l} relative`,children:[e.jsx("div",{className:"absolute inset-0 grid-pattern noise-pattern opacity-50","aria-hidden":"true"}),e.jsxs("div",{className:n,style:{position:"relative",zIndex:1},children:[e.jsxs(s.div,{initial:{opacity:0,y:30},whileInView:{opacity:1,y:0},viewport:{once:!0,margin:"-100px"},transition:{duration:.6},className:"text-center max-w-3xl mx-auto mb-16",children:[e.jsx("h2",{className:d,children:"Experience"}),e.jsx("p",{className:x,children:"Professional experience and internships"})]}),e.jsx("div",{className:"max-w-3xl mx-auto",children:o.map((a,r)=>e.jsxs(s.div,{initial:{opacity:0,y:30},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.5,delay:r*.1},className:"relative",children:[e.jsx("div",{className:"absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary-500 to-dark-700"}),e.jsxs("div",{className:"pl-16 relative",children:[e.jsx("div",{className:"absolute left-0 top-2 w-4 h-4 rounded-full bg-primary-500 border-4 border-dark-950 z-10"}),e.jsxs("div",{className:m,children:[e.jsxs("div",{className:"flex flex-wrap items-start gap-4 mb-4",children:[e.jsx("div",{className:"p-2 rounded-lg bg-primary-500/10",children:e.jsx(p,{className:"h-5 w-5 text-primary-500"})}),e.jsxs("div",{className:"flex-1",children:[e.jsx("h3",{className:"text-xl font-bold text-white",children:a.title}),e.jsx("p",{className:"text-primary-400 font-medium",children:a.company})]}),e.jsxs("div",{className:"text-right",children:[e.jsx("p",{className:"text-sm text-dark-400",children:a.period}),e.jsx("p",{className:"text-xs text-dark-500",children:a.duration})]})]}),e.jsxs("div",{className:"flex items-center gap-2 text-sm text-dark-400 mb-6",children:[e.jsx(j,{className:"h-4 w-4"}),e.jsx("span",{children:a.location})]}),e.jsx("ul",{className:"space-y-3",children:a.details.map((t,c)=>e.jsxs(s.li,{initial:{opacity:0,x:-10},animate:{opacity:1,x:0},transition:{delay:.1+c*.05},className:"flex items-start gap-3 text-dark-300",children:[e.jsx(h,{className:"h-5 w-5 text-primary-500 flex-shrink-0 mt-0.5"}),e.jsx("span",{children:t})]},t))})]})]})]},a.title))})]})]})}export{N as Experience};
