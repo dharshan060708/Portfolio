@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Menu, X, GitBranch, Terminal as TerminalIcon, Search, FileText, ExternalLink, ArrowRight, Download } from "lucide-react"
+import { Menu, X, GitBranch, Search, FileText, ExternalLink, ArrowRight, Download } from "lucide-react"
 import { profile } from "@/data/portfolio"
 import { containerCustom } from "@/utils/styles"
 
@@ -83,8 +83,8 @@ export function Navbar() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <div className="p-1.5 rounded-lg bg-gold-500/10 border border-gold-500/30 group-hover:border-gold-500 transition-colors">
-                <TerminalIcon className="h-5 w-5 text-gold-500" />
+              <div className="h-8 w-8 rounded-lg overflow-hidden border border-gold-500/30 group-hover:border-gold-500 transition-colors flex items-center justify-center bg-black-950">
+                <img src="/logo.png" alt="DV Logo" className="h-6 w-6 object-contain" />
               </div>
               <span className="font-mono text-white tracking-tight">DV<span className="text-gold-500">.dev</span></span>
             </motion.a>
