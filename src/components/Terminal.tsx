@@ -1,48 +1,92 @@
 import { useState, useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 import { useMediaQuery } from "@/hooks/useMediaQuery"
-import { profile, projects, codingProfiles } from "@/data/portfolio"
+import { profile, projects, experience, education, achievements } from "@/data/portfolio"
 import { containerCustom, section, sectionTitle, sectionSubtitle, card } from "@/utils/styles"
 
 const commands = [
-  { cmd: "about", desc: "Show profile information", output: `Name: ${profile.name}
-Role: ${profile.title}
+  { 
+    cmd: "about", 
+    desc: "Display profile, education, and technical positioning", 
+    output: `Name: ${profile.name}
+Role: ${profile.headline} | ${profile.subtitle}
 Location: ${profile.location}
-Education: ${profile.education.degree}
-College: ${profile.education.college}
-Graduation: ${profile.education.graduation}
-CGPA: ${profile.education.cgpa}
-Focus: Software Engineering, AI & Automation, Backend Development` },
-  { cmd: "whoami", desc: "Display current user and bio", output: `${profile.name} — Final-year BCA student building practical software, AI automation systems, and local LLM tools.` },
-  { cmd: "projects", desc: "List all projects", output: projects.map(p => `> ${p.name} [${p.category}] - ${p.description}`).join("\n") },
-  { cmd: "skills", desc: "Show technical skills", output: `Programming: Java, Python, SQL, JavaScript, TypeScript
-Web/Backend: Flask, REST APIs, HTML5, CSS3, Vite
-AI: Ollama, Local LLMs, llama.cpp, Gemini API
-Automation: n8n, UiPath Studio, Chrome Automation, Webhooks
-Data/BI: Power BI, Google Sheets API
-Desktop: Visual Basic 6, ADO, MS Access
-Tools: Git, GitHub, Postman, Linux/CLI` },
-  { cmd: "experience", desc: "Show experience and internships", output: `1. Python Developer Intern — CodSoft (Coimbatore)
-   • Built custom desktop and CLI tools with Python
-   • Designed modular application logic and exception handling
-   • Managed Git version control and collaborative workflows` },
-  { cmd: "education", desc: "Show academic background", output: `Bachelor of Computer Applications (BCA)
-KG College of Arts and Science (2024 - 2027)
-CGPA: 8.0 / 10 | Focus: Core Java, DBMS, Systems, Data Structures` },
-  { cmd: "achievements", desc: "Show recognitions & hackathons", output: `★ 1st Prize — National Level Tech Fest (KG College)
-   Project: AI-Powered Multi-Platform Automation System` },
-  { cmd: "resume", desc: "Download / view resume PDF", output: "Opening resume..." },
-  { cmd: "coding", desc: "Show coding profiles", output: `LeetCode: ${codingProfiles.leetcode.url}
-HackerRank: ${codingProfiles.hackerrank.url}` },
-  { cmd: "github", desc: "Open GitHub profile", output: `Opening ${profile.links.github}...` },
-  { cmd: "contact", desc: "Show contact information", output: `Email: ${profile.email}
-GitHub: ${profile.links.github}
-LinkedIn: ${profile.links.linkedin}
-LeetCode: ${profile.links.leetcode}
-HackerRank: ${profile.links.hackerrank}` },
-  { cmd: "sudo", desc: "Run superuser command", output: "Permission denied: You are a guest visitor, but you have full privileges to explore!" },
-  { cmd: "help", desc: "Show available commands", output: "" },
-  { cmd: "clear", desc: "Clear terminal", output: "" },
+Degree: ${profile.education.degree} (${profile.education.college})
+Graduation: ${profile.education.graduation} | Academic Score: ${profile.education.cgpa}
+Core Focus: Software Engineering, Backend Development, AI & Automation` 
+  },
+  { 
+    cmd: "stack", 
+    desc: "Show full software engineering technical stack", 
+    output: `[Programming]
+  • Java, Python, SQL, JavaScript, TypeScript
+[Software Engineering]
+  • OOP, Data Structures & Algorithms, REST APIs, Database Design, Git
+[Backend]
+  • Flask, REST APIs, SQL Query Optimization, Database Operations
+[AI & Automation]
+  • Ollama, llama.cpp, Local LLMs (GGUF), n8n Workflows, UiPath RPA
+[Frontend & Tools]
+  • HTML5, CSS3, Vite, Tailwind CSS, Git, GitHub, Power BI` 
+  },
+  { 
+    cmd: "projects", 
+    desc: "List verified engineering projects & architecture", 
+    output: projects.map(p => `• ${p.name} [${p.category}]\n  ${p.summary}\n  Tech: ${p.tech.join(", ")}`).join("\n\n") 
+  },
+  { 
+    cmd: "skills", 
+    desc: "Show primary technical competencies", 
+    output: `Primary Languages: Java, Python, SQL
+Backend: Flask, REST APIs, Relational DBs
+AI Automation: n8n, Ollama, llama.cpp, UiPath Studio
+Engineering: OOP, DSA, Git Version Control` 
+  },
+  { 
+    cmd: "experience", 
+    desc: "Show industry internship details", 
+    output: experience.map(e => `${e.title} — ${e.company} (${e.period})\nLocation: ${e.location}\n${e.details.map(d => `  - ${d}`).join("\n")}`).join("\n\n") 
+  },
+  { 
+    cmd: "education", 
+    desc: "Show academic background", 
+    output: education.map(edu => `${edu.degree}\n${edu.college} (${edu.period}) | ${edu.grade}\nCoursework: ${edu.description}`).join("\n\n") 
+  },
+  { 
+    cmd: "achievements", 
+    desc: "Show verified recognitions and awards", 
+    output: achievements.map(a => `★ ${a.title} — ${a.event} (${a.year})\n  Project: ${a.project}\n  ${a.description}`).join("\n\n") 
+  },
+  { 
+    cmd: "status", 
+    desc: "Display current availability and job search status", 
+    output: `● Status: ${profile.status}\nTarget Roles: Software Engineer (Internship / Entry-Level), Backend Developer, AI Automation Engineer\nRelocation: Open to relocation & remote roles` 
+  },
+  { 
+    cmd: "resume", 
+    desc: "Open and download resume PDF", 
+    output: "Opening resume in new tab..." 
+  },
+  { 
+    cmd: "github", 
+    desc: "Open GitHub profile in new tab", 
+    output: `Opening ${profile.links.github}...` 
+  },
+  { 
+    cmd: "contact", 
+    desc: "Show verified contact channels", 
+    output: `Email: ${profile.email}\nGitHub: ${profile.links.github}\nLinkedIn: ${profile.links.linkedin}\nLeetCode: ${profile.links.leetcode}\nHackerRank: ${profile.links.hackerrank}` 
+  },
+  { 
+    cmd: "help", 
+    desc: "List all supported terminal commands", 
+    output: "" 
+  },
+  { 
+    cmd: "clear", 
+    desc: "Clear terminal history", 
+    output: "" 
+  },
 ]
 
 const commandMap = Object.fromEntries(commands.map(c => [c.cmd, c]))
@@ -50,8 +94,8 @@ const commandMap = Object.fromEntries(commands.map(c => [c.cmd, c]))
 export function DeveloperTerminal() {
   const [theme, setTheme] = useState<"default" | "matrix" | "amber" | "cyan">("default")
   const [history, setHistory] = useState<Array<{ type: "input" | "output"; content: string; cmd?: string }>>([
-    { type: "output", content: "Welcome to Dharshan's Developer Terminal v1.0" },
-    { type: "output", content: "Type 'help' or try 'theme matrix' / 'theme amber'" },
+    { type: "output", content: "Dharshan Velumani — Interactive Developer Terminal [Version 2.0]" },
+    { type: "output", content: "Type 'help' to see available commands or try 'projects', 'stack', 'status'" },
   ])
   const [input, setInput] = useState("")
   const [cursorVisible, setCursorVisible] = useState(true)
@@ -73,10 +117,13 @@ export function DeveloperTerminal() {
     const trimmed = cmd.trim().toLowerCase()
     if (!trimmed) return
 
-    setHistory(prev => [...prev, { type: "input", content: `dharshan@portfolio:~$ ${cmd}`, cmd }])
+    setHistory(prev => [...prev, { type: "input", content: `dharshan@dev:~$ ${cmd}`, cmd }])
 
     if (trimmed === "clear") {
-      setHistory([{ type: "output", content: "Welcome to Dharshan's Developer Terminal v1.0" }, { type: "output", content: "Type 'help' for available commands" }])
+      setHistory([
+        { type: "output", content: "Dharshan Velumani — Interactive Developer Terminal [Version 2.0]" },
+        { type: "output", content: "Type 'help' for available commands" }
+      ])
       return
     }
 
@@ -84,15 +131,15 @@ export function DeveloperTerminal() {
       const selectedTheme = trimmed.replace("theme ", "").trim()
       if (["default", "matrix", "amber", "cyan"].includes(selectedTheme)) {
         setTheme(selectedTheme as "default" | "matrix" | "amber" | "cyan")
-        setHistory(prev => [...prev, { type: "output", content: `Terminal theme switched to [${selectedTheme}] mode!` }])
+        setHistory(prev => [...prev, { type: "output", content: `Terminal theme switched to [${selectedTheme}] mode.` }])
       } else {
-        setHistory(prev => [...prev, { type: "output", content: `Available themes: default, matrix, amber, cyan. (Example: 'theme matrix')` }])
+        setHistory(prev => [...prev, { type: "output", content: `Available themes: default, matrix, amber, cyan. (Usage: 'theme matrix')` }])
       }
       return
     }
 
     if (trimmed === "help") {
-      const helpOutput = commands.map(c => `  ${c.cmd.padEnd(12)} ${c.desc}`).join("\n") + "\n  theme <name> Switch terminal theme (default, matrix, amber, cyan)"
+      const helpOutput = commands.map(c => `  ${c.cmd.padEnd(14)} ${c.desc}`).join("\n") + "\n  theme <name>   Switch color theme (default, matrix, amber, cyan)"
       setHistory(prev => [...prev, { type: "output", content: helpOutput }])
       return
     }
@@ -109,7 +156,7 @@ export function DeveloperTerminal() {
         window.open("/Dharshan_Velumani_SoftwareDeveloper_Resume.pdf", "_blank")
       }
     } else {
-      setHistory(prev => [...prev, { type: "output", content: `Command not found: ${cmd}. Type 'help' for available commands.` }])
+      setHistory(prev => [...prev, { type: "output", content: `Command not found: '${cmd}'. Type 'help' to view available commands.` }])
     }
   }
 
@@ -120,18 +167,17 @@ export function DeveloperTerminal() {
     inputRef.current?.focus()
   }
 
-  const quickCommands = ["about", "projects", "skills", "experience", "education", "resume", "github", "contact"]
+  const quickCommands = ["about", "stack", "projects", "skills", "experience", "education", "achievements", "status", "resume", "github", "contact"]
 
-  // Theme styling tokens
+  // Theme styling tokens (Obsidian Black x Champagne Gold default)
   const themeStyles = {
     default: {
-      card: "bg-dark-900/90 border-dark-700 shadow-2xl",
-      header: "bg-dark-800 border-dark-700 text-dark-400",
-      prompt: "text-primary-400",
+      card: "bg-black-950/95 border-black-600 shadow-gold-subtle",
+      header: "bg-black-900 border-black-600 text-gray-400",
+      prompt: "text-gold-500 font-bold",
       input: "text-white",
-      output: "text-dark-200",
-      caret: "text-primary-500 caret-primary-500",
-      glow: "from-primary-500/10 via-transparent to-red-500/10",
+      output: "text-gray-400",
+      caret: "text-gold-500 caret-gold-500",
     },
     matrix: {
       card: "bg-[#031508]/95 border-[#00ff66]/30 shadow-[0_0_30px_rgba(0,255,102,0.15)]",
@@ -140,16 +186,14 @@ export function DeveloperTerminal() {
       input: "text-[#00ff66]",
       output: "text-[#80ffaa]",
       caret: "text-[#00ff66] caret-[#00ff66]",
-      glow: "from-[#00ff66]/20 via-transparent to-[#00ff66]/10",
     },
     amber: {
-      card: "bg-[#180e00]/95 border-[#ffb000]/30 shadow-[0_0_30px_rgba(255,176,0,0.15)]",
-      header: "bg-[#281800] border-[#ffb000]/30 text-[#ffb000]",
-      prompt: "text-[#ffb000] font-bold",
-      input: "text-[#ffb000]",
-      output: "text-[#ffd480]",
-      caret: "text-[#ffb000] caret-[#ffb000]",
-      glow: "from-[#ffb000]/20 via-transparent to-[#ffb000]/10",
+      card: "bg-[#140f03]/95 border-[#D4AF37]/30 shadow-[0_0_30px_rgba(212,175,55,0.15)]",
+      header: "bg-[#211805] border-[#D4AF37]/30 text-[#D4AF37]",
+      prompt: "text-[#D4AF37] font-bold",
+      input: "text-[#D4AF37]",
+      output: "text-[#F5D76E]",
+      caret: "text-[#D4AF37] caret-[#D4AF37]",
     },
     cyan: {
       card: "bg-[#09101d]/95 border-[#00f0ff]/30 shadow-[0_0_30px_rgba(0,240,255,0.15)]",
@@ -158,7 +202,6 @@ export function DeveloperTerminal() {
       input: "text-[#00f0ff]",
       output: "text-[#80f8ff]",
       caret: "text-[#00f0ff] caret-[#00f0ff]",
-      glow: "from-[#00f0ff]/20 via-transparent to-[#ff007f]/10",
     },
   }[theme]
 
@@ -172,8 +215,8 @@ export function DeveloperTerminal() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-12"
         >
-          <h2 className={sectionTitle}>Developer Terminal</h2>
-          <p className={sectionSubtitle}>Interactive command interface — try typing commands or changing themes below</p>
+          <h2 className={sectionTitle}>Developer CLI Terminal</h2>
+          <p className={sectionSubtitle}>Interactive command line interface for recruiters and engineers</p>
         </motion.div>
 
         <motion.div
@@ -187,25 +230,27 @@ export function DeveloperTerminal() {
             <div className={`flex items-center justify-between px-4 py-3 border-b ${themeStyles.header}`}>
               <div className="flex items-center gap-2">
                 <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-red-500" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                  <div className="w-3 h-3 rounded-full bg-green-500" />
+                  <div className="w-3 h-3 rounded-full bg-status-error/80" />
+                  <div className="w-3 h-3 rounded-full bg-gold-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-status-success/80" />
                 </div>
-                <span className="text-xs font-mono ml-2">dharshan@portfolio:~$</span>
+                <span className="text-xs font-mono ml-2">dharshan@dev:~$</span>
               </div>
 
-              {/* Quick Theme Selector */}
+              {/* Theme selector */}
               <div className="flex items-center gap-1.5 text-xs font-mono">
-                <span className="text-dark-500 text-[11px] hidden sm:inline mr-1">theme:</span>
+                <span className="text-gray-500 text-[11px] hidden sm:inline mr-1">theme:</span>
                 {(["default", "matrix", "amber", "cyan"] as const).map((t) => (
                   <button
                     key={t}
+                    type="button"
                     onClick={() => setTheme(t)}
-                    className={`px-2 py-0.5 rounded text-[11px] uppercase transition-colors ${
+                    className={`px-2 py-0.5 rounded text-[11px] uppercase transition-colors cursor-pointer ${
                       theme === t 
-                        ? "bg-primary-500 text-dark-950 font-bold" 
-                        : "bg-dark-800/80 text-dark-400 hover:text-white"
+                        ? "bg-gold-500 text-black-950 font-bold" 
+                        : "bg-black-900 text-gray-400 hover:text-white"
                     }`}
+                    aria-label={`Switch to ${t} terminal theme`}
                   >
                     {t}
                   </button>
@@ -213,8 +258,11 @@ export function DeveloperTerminal() {
               </div>
             </div>
 
-            <div className="p-6 font-mono text-sm leading-relaxed min-h-[300px] max-h-[400px] overflow-y-auto">
-              <div className="space-y-1">
+            <div 
+              className="p-5 sm:p-6 font-mono text-xs sm:text-sm leading-relaxed min-h-[300px] max-h-[420px] overflow-y-auto"
+              aria-live="polite"
+            >
+              <div className="space-y-1.5">
                 {history.map((entry, index) => (
                   <div
                     key={index}
@@ -224,7 +272,7 @@ export function DeveloperTerminal() {
                   </div>
                 ))}
                 <div className="flex items-center gap-2 pt-1">
-                  <span className={themeStyles.prompt}>dharshan@portfolio:~$</span>
+                  <span className={themeStyles.prompt}>dharshan@dev:~$</span>
                   <form onSubmit={handleSubmit} className="flex-1">
                     <input
                       ref={inputRef}
@@ -232,9 +280,9 @@ export function DeveloperTerminal() {
                       value={input}
                       onChange={e => setInput(e.target.value)}
                       onKeyDown={e => e.key === "Tab" && e.preventDefault()}
-                      className={`bg-transparent border-none outline-none font-mono text-sm flex-1 w-full ${themeStyles.input} ${themeStyles.caret}`}
-                      placeholder="Type a command (e.g. 'skills', 'projects', 'theme matrix')..."
-                      autoFocus
+                      className={`bg-transparent border-none outline-none font-mono text-xs sm:text-sm flex-1 w-full ${themeStyles.input} ${themeStyles.caret}`}
+                      placeholder="Type a command (e.g. 'stack', 'projects', 'experience')..."
+                      aria-label="Terminal command input"
                     />
                     <span className={`${cursorVisible ? "opacity-100" : "opacity-0"} ${themeStyles.caret} ${shouldAnimateCursor ? "animate-pulse" : ""}`}>_</span>
                   </form>
@@ -242,15 +290,15 @@ export function DeveloperTerminal() {
               </div>
             </div>
 
-            <div className="px-4 py-3 bg-dark-800/60 border-t border-dark-700/60">
-              <p className="text-xs text-dark-500 mb-2 font-mono">Quick commands:</p>
-              <div className="flex flex-wrap gap-2">
+            <div className="px-4 py-3 bg-black-900/90 border-t border-black-600/80">
+              <p className="text-xs text-gray-400 mb-2 font-mono">Quick commands:</p>
+              <div className="flex flex-wrap gap-1.5 sm:gap-2">
                 {quickCommands.map((cmd) => (
                   <button
                     key={cmd}
                     type="button"
                     onClick={() => executeCommand(cmd)}
-                    className="px-3 py-1 text-xs font-mono text-dark-300 hover:text-primary-400 bg-dark-900 border border-dark-700 rounded hover:border-primary-500/50 transition-all cursor-pointer"
+                    className="px-2.5 py-1 text-xs font-mono text-gray-400 hover:text-gold-400 bg-black-950 border border-black-600 rounded hover:border-gold-500/50 transition-all cursor-pointer"
                   >
                     {cmd}
                   </button>

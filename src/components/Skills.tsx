@@ -1,65 +1,56 @@
-import { Code, Brain, Zap, Server, Bot, Database, GitBranch, Cpu } from "lucide-react"
+import { Code, Brain, Server, Database, GitBranch, Cpu, CheckCircle2, Star } from "lucide-react"
 import { skills } from "@/data/portfolio"
-import { containerCustom, section, sectionTitle, sectionSubtitle, badge } from "@/utils/styles"
-import { useState } from "react"
+import { containerCustom, section, sectionTitle, sectionSubtitle, card } from "@/utils/styles"
 import { useScrollAnimation, useStaggeredScrollAnimation } from "@/hooks/useScrollAnimation"
 
-const skillIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  programming: Code,
-  ai: Brain,
-  automation: Zap,
-  webBackend: Server,
-  desktopLegacy: Bot,
-  tools: GitBranch,
-  coreJava: Cpu,
-  dataBI: Database,
-}
-
-const skillCategories = [
-  { key: "programming", label: "Programming", icon: "programming" },
-  { key: "webBackend", label: "Web / Backend", icon: "webBackend" },
-  { key: "ai", label: "AI", icon: "ai" },
-  { key: "automation", label: "Automation", icon: "automation" },
-  { key: "coreJava", label: "Core Java", icon: "coreJava" },
-  { key: "dataBI", label: "Data / BI", icon: "dataBI" },
-  { key: "desktopLegacy", label: "Desktop / Legacy", icon: "desktopLegacy" },
-  { key: "tools", label: "Tools", icon: "tools" },
-]
-
-const skillDescriptions: Record<string, string> = {
-  Java: "Backend / Systems",
-  Python: "Backend / Automation / AI",
-  SQL: "Database Querying",
-  JavaScript: "Full Stack",
-  "Object-Oriented Programming": "Java Fundamentals",
-  "Exception Handling": "Error Management",
-  HTML5: "Markup",
-  CSS3: "Styling",
-  Flask: "Python Backend",
-  "REST APIs": "API Design",
-  Vite: "Build Tool",
-  TypeScript: "Type Safety",
-  Ollama: "Local AI",
-  "Local LLMs": "On-device Inference",
-  "llama.cpp": "LLM Runtime",
-  "Gemini API": "Cloud AI",
-  n8n: "Workflow Automation",
-  "UiPath Studio": "RPA Platform",
-  "Chrome Automation": "Browser RPA",
-  Webhooks: "Event Integration",
-  "Power BI": "Data Visualization",
-  "Google Sheets API": "Data Integration",
-  "Visual Basic 6": "Legacy Desktop",
-  ADO: "Data Access",
-  "Microsoft Access": "Database",
-  Git: "Version Control",
-  GitHub: "Collaboration",
-}
-
 export function Skills() {
-  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null)
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation<HTMLDivElement>()
   const { containerRef, isVisible: isContainerVisible } = useStaggeredScrollAnimation<HTMLDivElement>()
+
+  const categories = [
+    {
+      title: "Core Programming Languages",
+      subtitle: "Foundational languages for systems, backend, and algorithms",
+      icon: Code,
+      items: skills.programming,
+      isCore: true,
+    },
+    {
+      title: "Software Engineering & Computer Science",
+      subtitle: "Fundamental principles, architectural patterns, and practices",
+      icon: Cpu,
+      items: skills.softwareEngineering,
+      isCore: true,
+    },
+    {
+      title: "Backend Development",
+      subtitle: "API architecture, server logic, and relational database querying",
+      icon: Server,
+      items: skills.backend,
+      isCore: true,
+    },
+    {
+      title: "AI & Workflow Automation",
+      subtitle: "Local LLM runtimes, agentic workflows, and RPA platforms",
+      icon: Brain,
+      items: skills.aiAutomation,
+      isCore: false,
+    },
+    {
+      title: "Frontend & Web Technologies",
+      subtitle: "Modern client-side interfaces and responsive build tools",
+      icon: Database,
+      items: skills.frontend,
+      isCore: false,
+    },
+    {
+      title: "Analytics & Legacy Systems",
+      subtitle: "Data modeling, business intelligence, and legacy desktop architectures",
+      icon: GitBranch,
+      items: skills.dataSecondary,
+      isCore: false,
+    },
+  ]
 
   return (
     <section id="skills" className={`${section} relative section-contain`}>
@@ -68,52 +59,54 @@ export function Skills() {
           ref={headerRef}
           className={`text-center max-w-3xl mx-auto mb-16 scroll-reveal ${headerVisible ? 'is-visible' : ''}`}
         >
-          <h2 className={sectionTitle}>Tech Arsenal</h2>
-          <p className={sectionSubtitle}>Technologies and tools I work with</p>
+          <h2 className={sectionTitle}>Technical Skills & Competencies</h2>
+          <p className={sectionSubtitle}>
+            Structured across core software engineering foundations, backend development, and AI automation
+          </p>
         </div>
 
-        <div ref={containerRef} className="space-y-12">
-          {skillCategories.map((category, catIndex) => {
-            const categorySkills = skills[category.key as keyof typeof skills]
-            
+        <div ref={containerRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {categories.map((cat, catIndex) => {
+            const Icon = cat.icon;
             return (
               <div
-                key={category.key}
-                className={`scroll-reveal-stagger ${isContainerVisible ? 'is-visible' : ''}`}
+                key={cat.title}
+                className={`${card} p-6 flex flex-col justify-between scroll-reveal-stagger ${
+                  cat.isCore ? "border-gold-500/35 bg-black-800 shadow-gold-subtle" : "bg-black-800"
+                } ${isContainerVisible ? 'is-visible' : ''}`}
                 style={{ transitionDelay: `${catIndex * 60}ms` }}
               >
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2 rounded-lg bg-primary-500/10">
-                    {(() => {
-                      const Icon = skillIcons[category.icon as keyof typeof skillIcons];
-                      return <Icon className="h-5 w-5 text-primary-500" aria-hidden="true" />;
-                    })()}
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <div className={`p-2.5 rounded-lg ${cat.isCore ? "bg-gold-500/20 text-gold-500" : "bg-black-900 text-gray-400"}`}>
+                      <Icon className="h-5 w-5" aria-hidden="true" />
+                    </div>
+                    {cat.isCore && (
+                      <span className="inline-flex items-center gap-1 text-[11px] font-mono font-semibold uppercase text-gold-500 px-2 py-0.5 rounded bg-gold-500/10 border border-gold-500/20">
+                        <Star className="h-3 w-3 fill-gold-500" />
+                        Core Priority
+                      </span>
+                    )}
                   </div>
-                  <h3 className="text-xl font-semibold text-white">{category.label}</h3>
-                </div>
-                
-                <div className="flex flex-wrap gap-3">
-                  {categorySkills.map((skill, skillIndex) => (
-                    <button
-                      key={skill}
-                      className={`${badge} group relative overflow-hidden transition-all duration-200 hover:scale-[1.02] ${
-                        hoveredSkill === skill ? "bg-primary-500/20 border-primary-500/30 text-primary-300" : ""
-                      } ${isContainerVisible ? 'opacity-100' : 'opacity-0 translate-y-2'}`}
-                      onMouseEnter={() => setHoveredSkill(skill)}
-                      onMouseLeave={() => setHoveredSkill(null)}
-                      style={{ 
-                        transitionDelay: `${(catIndex * 60) + (skillIndex * 25)}ms`,
-                        zIndex: hoveredSkill === skill ? 10 : 1 
-                      }}
-                    >
-                      {skill}
-                      {hoveredSkill === skill && (
-                        <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 text-xs font-medium text-white bg-dark-900 border border-dark-600 rounded-lg whitespace-nowrap shadow-lg z-20 animate-fade-in">
-                          {skillDescriptions[skill] || "Technology"}
-                        </div>
-                      )}
-                    </button>
-                  ))}
+
+                  <h3 className="text-lg font-bold text-white mb-1">{cat.title}</h3>
+                  <p className="text-xs text-gray-400 mb-5 leading-normal">{cat.subtitle}</p>
+
+                  <div className="flex flex-wrap gap-2">
+                    {cat.items.map((item) => (
+                      <span
+                        key={item.name}
+                        className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-mono transition-colors ${
+                          item.priority
+                            ? "bg-gold-500/15 border border-gold-500/40 text-gold-400 font-semibold"
+                            : "bg-black-950 border border-black-600 text-gray-400 hover:text-white"
+                        }`}
+                      >
+                        {item.priority && <CheckCircle2 className="h-3 w-3 text-gold-500" />}
+                        {item.name}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             )

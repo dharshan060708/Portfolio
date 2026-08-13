@@ -1,116 +1,76 @@
-import { motion } from "framer-motion"
-import { Terminal, Mail, GitBranch, Link2, Code, Award, Heart } from "lucide-react"
+import { Terminal, Mail, GitBranch, Link2, Code, Award } from "lucide-react"
 import { profile } from "@/data/portfolio"
 import { containerCustom } from "@/utils/styles"
 
 export function Footer() {
-  const currentYear = new Date().getFullYear()
+  const currentYear = 2026
 
   return (
-    <footer className="relative border-t border-dark-800 section-contain">
+    <footer className="relative border-t border-black-600 bg-black-950 section-contain">
       <div className={containerCustom} style={{ position: 'relative', zIndex: 1 }}>
         <div className="py-12 lg:py-16">
-          <div className="grid lg:grid-cols-4 gap-12 mb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="lg:col-span-2 space-y-6"
-            >
+          <div className="grid md:grid-cols-12 gap-8 mb-10">
+            {/* Column 1: Bio */}
+            <div className="md:col-span-6 space-y-4">
               <div className="flex items-center gap-2">
-                <Terminal className="h-8 w-8 text-primary-500" />
-                <span className="font-bold text-xl text-white">DV</span>
+                <div className="p-1.5 rounded-lg bg-gold-500/10 border border-gold-500/30">
+                  <Terminal className="h-5 w-5 text-gold-500" />
+                </div>
+                <span className="font-bold text-lg text-white font-mono">{profile.name}</span>
               </div>
-              <p className="text-dark-400 max-w-md leading-relaxed">
-                {profile.name} — {profile.title}
+              <p className="text-gold-500 font-medium text-sm">
+                {profile.headline} | {profile.subtitle}
               </p>
-              <p className="text-dark-500 text-sm">
-                Final-year BCA student building practical software, AI-powered automation systems, local AI tools, and backend applications.
+              <p className="text-gray-400 text-xs sm:text-sm max-w-md leading-relaxed">
+                {profile.description}
               </p>
-              <div className="flex flex-wrap gap-4 pt-4">
-                <a href={profile.links.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-dark-400 hover:text-primary-400 transition-colors">
-                  <GitBranch className="h-5 w-5" />
+            </div>
+
+            {/* Column 2: Navigation */}
+            <div className="md:col-span-3 space-y-3">
+              <h4 className="text-xs font-mono uppercase tracking-wider text-gray-500 font-semibold">Navigation</h4>
+              <nav className="flex flex-col space-y-2 text-xs sm:text-sm">
+                <a href="#home" className="text-gray-400 hover:text-gold-500 transition-colors">Home</a>
+                <a href="#about" className="text-gray-400 hover:text-gold-500 transition-colors">About</a>
+                <a href="#focus" className="text-gray-400 hover:text-gold-500 transition-colors">What I Build</a>
+                <a href="#projects" className="text-gray-400 hover:text-gold-500 transition-colors">Projects</a>
+                <a href="#skills" className="text-gray-400 hover:text-gold-500 transition-colors">Skills</a>
+                <a href="#experience" className="text-gray-400 hover:text-gold-500 transition-colors">Experience</a>
+                <a href="#contact" className="text-gray-400 hover:text-gold-500 transition-colors">Contact</a>
+              </nav>
+            </div>
+
+            {/* Column 3: Profiles & Verified Links */}
+            <div className="md:col-span-3 space-y-3">
+              <h4 className="text-xs font-mono uppercase tracking-wider text-gray-500 font-semibold">Verified Links</h4>
+              <div className="flex flex-col space-y-2 text-xs sm:text-sm">
+                <a href={profile.links.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-400 hover:text-gold-500 transition-colors">
+                  <GitBranch className="h-4 w-4" />
                   GitHub
                 </a>
-                <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-dark-400 hover:text-blue-400 transition-colors">
-                  <Link2 className="h-5 w-5" />
+                <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-400 hover:text-gold-500 transition-colors">
+                  <Link2 className="h-4 w-4" />
                   LinkedIn
                 </a>
-                <a href={profile.links.leetcode} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-dark-400 hover:text-orange-400 transition-colors">
-                  <Code className="h-5 w-5" />
+                <a href={profile.links.leetcode} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-400 hover:text-gold-500 transition-colors">
+                  <Code className="h-4 w-4" />
                   LeetCode
                 </a>
-                <a href={profile.links.hackerrank} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-dark-400 hover:text-green-400 transition-colors">
-                  <Award className="h-5 w-5" />
+                <a href={profile.links.hackerrank} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-400 hover:text-gold-500 transition-colors">
+                  <Award className="h-4 w-4" />
                   HackerRank
                 </a>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="space-y-4"
-            >
-              <h4 className="font-semibold text-white">Connect</h4>
-              <div className="space-y-3">
-                <a href={`mailto:${profile.email}`} className="flex items-center gap-3 text-dark-400 hover:text-primary-400 transition-colors group">
-                  <Mail className="h-5 w-5" />
-                  <span>{profile.email}</span>
-                </a>
-                <a href={profile.links.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-dark-400 hover:text-white transition-colors group">
-                  <GitBranch className="h-5 w-5" />
-                  <span>GitHub Profile</span>
-                </a>
-                <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-dark-400 hover:text-blue-400 transition-colors group">
-                  <Link2 className="h-5 w-5" />
-                  <span>LinkedIn Profile</span>
+                <a href={`mailto:${profile.email}`} className="flex items-center gap-2 text-gray-400 hover:text-gold-500 transition-colors">
+                  <Mail className="h-4 w-4" />
+                  Email
                 </a>
               </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="space-y-4"
-            >
-              <h4 className="font-semibold text-white">Quick Links</h4>
-              <nav className="space-y-3">
-                <a href="#projects" className="text-dark-400 hover:text-primary-400 transition-colors">Projects</a>
-                <a href="#skills" className="text-dark-400 hover:text-primary-400 transition-colors">Tech Stack</a>
-                <a href="#coding" className="text-dark-400 hover:text-primary-400 transition-colors">Coding Profiles</a>
-                <a href="#experience" className="text-dark-400 hover:text-primary-400 transition-colors">Experience</a>
-                <a href="#contact" className="text-dark-400 hover:text-primary-400 transition-colors">Contact</a>
-              </nav>
-            </motion.div>
+            </div>
           </div>
 
-          <div className="pt-8 border-t border-dark-800">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <motion.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                className="text-dark-500 text-sm"
-              >
-                © {currentYear} {profile.name}. All rights reserved.
-              </motion.p>
-              
-              <motion.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                className="text-dark-500 text-sm flex items-center gap-2"
-              >
-                Built with curiosity, code, and automation.
-                <Heart className="h-4 w-4 text-red-500" />
-              </motion.p>
-            </div>
+          <div className="pt-6 border-t border-black-600/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-gray-500">
+            <p>© {currentYear} {profile.name}. All verified rights reserved.</p>
+            <p>Targeting Software Engineering & AI Automation Roles.</p>
           </div>
         </div>
       </div>

@@ -1,17 +1,22 @@
 {
-  "name": "Dharshan Velumani Portfolio",
-  "short_name": "DV Portfolio",
-  "description": "Portfolio of Dharshan Velumani — Software Engineer | AI & Automation Developer",
+  "name": "Dharshan Velumani — Aspiring Software Engineer",
+  "short_name": "Dharshan.dev",
+  "description": "Portfolio of Dharshan Velumani — Aspiring Software Engineer | AI & Automation Developer",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#020617",
-  "theme_color": "#f59e0b",
+  "background_color": "#050505",
+  "theme_color": "#050505",
   "icons": [
     {
       "src": "/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
     }
   ]
 }
