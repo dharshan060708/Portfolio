@@ -84,7 +84,7 @@ export function Navbar() {
               whileTap={{ scale: 0.98 }}
             >
               <div className="h-8 w-8 rounded-lg overflow-hidden border border-gold-500/30 group-hover:border-gold-500 transition-colors flex items-center justify-center bg-black-950">
-                <img src="/logo.png" alt="DV Logo" className="h-6 w-6 object-contain" />
+                <img src="/logo.png" alt="DV Logo" className="h-full w-full p-1 object-contain" />
               </div>
               <span className="font-mono text-white tracking-tight">DV<span className="text-gold-500">.dev</span></span>
             </motion.a>

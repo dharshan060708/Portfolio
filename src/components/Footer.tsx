@@ -14,7 +14,7 @@ export function Footer() {
             <div className="md:col-span-6 space-y-4">
               <div className="flex items-center gap-2">
                 <div className="h-8 w-8 rounded-lg overflow-hidden border border-gold-500/30 flex items-center justify-center bg-black-950">
-                  <img src="/logo.png" alt="DV Logo" className="h-6 w-6 object-contain" />
+                  <img src="/logo.png" alt="DV Logo" className="h-full w-full p-1 object-contain" />
                 </div>
                 <span className="font-bold text-lg text-white font-mono">{profile.name}</span>
               </div>
