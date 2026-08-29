@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { projects, Project } from '../../data';
-import { ProjectModal } from '../3D/Modal/ProjectModal';
+import { ProjectModal } from '../Modal/ProjectModal';
 import { LayoutGrid, Cpu, Zap, Code2, Database, Shield, Server, Bot, Activity } from 'lucide-react';
 
 export function Projects() {

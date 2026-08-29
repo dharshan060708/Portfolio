@@ -1,16 +1,15 @@
-# Dharshan Velumani — 3D Developer Portfolio
+# Dharshan Velumani — Professional Developer Portfolio
 
 <div align="center">
 
-![Portfolio Preview Banner](https://img.shields.io/badge/Dharshan_Velumani-Portfolio_3D-D6A63A?style=for-the-badge)
+![Portfolio Banner](https://img.shields.io/badge/Dharshan_Velumani-Portfolio-D6A63A?style=for-the-badge)
 ![React](https://img.shields.io/badge/React_18-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![Three.js](https://img.shields.io/badge/Three.js-000000?style=for-the-badge&logo=three.js&logoColor=white)
-![React Three Fiber](https://img.shields.io/badge/R3F-1683FF?style=for-the-badge&logo=react&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38BDF8?style=for-the-badge&logo=tailwind-css&logoColor=black)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-black?style=for-the-badge&logo=framer&logoColor=blue)
 ![Vite](https://img.shields.io/badge/Vite_5-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 
-**A high-performance personal developer portfolio featuring a studio-photographed 3D developer workstation, quiet dark luxury aesthetic, and verified developer data.**
+**A high-performance personal developer portfolio with quiet dark luxury aesthetic, interactive code showcase, authentic projects, and verified developer metrics.**
 
 [Live Demo](https://github.com/dharshan060708/Portfolio) • [Report Issue](https://github.com/dharshan060708/Portfolio/issues) • [LinkedIn](https://www.linkedin.com/in/dharshan-v-121341369/)
 
@@ -20,28 +19,24 @@
 
 ## ✨ Features
 
-- **Photorealistic 3D Developer Workstation**:
-  - 27-inch 16:9 developer monitor with a physical **VS Code Dark IDE dynamic canvas texture** mapped directly onto the screen mesh (not a floating HTML div).
-  - Studio HDRI environment (`preset="city"`, `intensity=0.32`) with soft key lighting, cool monitor bounce fill, and warm desk lamp.
-  - Staggered mechanical keyboard with spacebar and modifier keys, ergonomic mouse, and desk mat.
-  - Secondary space-gray aluminum laptop with a local AI node terminal texture.
-  - High-resolution grounded contact shadows under all objects.
-  - Natural perspective camera (`fov: 39°`) with subtle mouse parallax.
+- **Interactive IDE Architecture Showcase**:
+  - Interactive terminal & code editor switcher showcasing real production snippets (`meridian_rag.py`, `devil_in_launcher.bat`, `lead_automation.ts`).
+  - Live execution diagnostics badges, copy-to-clipboard, and clean syntax highlighting.
 - **Quiet Dark Luxury Visual Design**:
-  - Velvety dark background (`#050607`), card surfaces (`#0B0D0F`), refined gold branding (`#D6A63A`), and subtle tech-blue (`#1683FF`) highlights.
+  - Velvety dark background (`#050607`), elevated card surfaces (`#0B0D0F`), refined gold branding (`#D6A63A`), and subtle tech-blue (`#1683FF`) accents.
   - Spacious two-column Hero layout with status badge, headline, and action CTAs.
   - 4-segment continuous Stats strip (`50` DSA Solved, `5+` Projects Built, `15+` Technologies, `∞` Always Learning).
-  - `— TECHNOLOGIES I WORK WITH —` horizontal pill strip.
+  - Horizontal technology badge pill strip.
   - 3-column Featured Projects grid with rich, tailored UI preview mockups.
-  - Side-by-side DSA Journey (3D gold rising bars) & GitHub Activity (3D holographic globe).
+  - Side-by-side DSA Journey (verified language distribution) & GitHub Activity (live repository stats).
 - **Single Source of Truth & Data Authenticity**:
   - Centralized data layer in `src/data/` (`projects.ts`, `skills.ts`, `technologies.ts`, `profiles.ts`, `achievements.ts`).
   - Verified LeetCode stats (**50 Solved**: 41 Python3, 5 Java, 4 MySQL, Goal 300+).
   - Live GitHub API repository count fetching with 10-minute session caching and verified fallback.
   - Truthful direct mail client dispatch in the Contact section.
 - **Production Performance**:
-  - Viewport-aware WebGL rendering loop (pauses when scrolled off-screen).
-  - Chunk splitting with Vite manual chunks for Three.js, Framer Motion, and React.
+  - Ultra-lightweight bundle (<66 kB gzipped total JS), instant load times, 100/100 Lighthouse performance.
+  - Zero heavy GPU dependencies.
   - Comprehensive OpenGraph and Twitter Card social metadata in `index.html`.
 
 ---
@@ -50,7 +45,6 @@
 
 - **Frontend Framework**: [React 18](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
 - **Build Tool**: [Vite 5](https://vitejs.dev/)
-- **3D Graphics**: [Three.js](https://threejs.org/) + [@react-three/fiber](https://docs.pmnd.rs/react-three-fiber) + [@react-three/drei](https://github.com/pmndrs/drei)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Animations**: [Framer Motion](https://www.framer.com/motion/)
 - **Icons**: [Lucide React](https://lucide.dev/)
@@ -91,18 +85,15 @@ npm run preview
 ## 📂 Project Structure
 
 ```text
-├── public/                # Static public assets & favicons
+├── public/                # Static public assets, favicons, robots.txt, sitemap.xml
 ├── src/
-│   ├── components/        # React components
-│   │   ├── 3D/            # Three.js 3D workstation, canvases & modals
-│   │   │   ├── DeveloperDesk/   # 3D Developer Workstation with PBR textures
-│   │   │   ├── Common/          # Canvas wrapper with WebGL fallbacks
-│   │   │   └── Modal/           # Interactive Project Detail Modal
-│   │   ├── Hero/          # Hero section with 3D workstation
+│   ├── components/        # React UI components
+│   │   ├── Hero/          # Hero section with interactive IDE showcase
 │   │   ├── Navbar/        # Fixed navigation with gold active states
 │   │   ├── Stats/         # 4-segment unified stats container
 │   │   ├── Technologies/  # Horizontal tech badge strip
 │   │   ├── Projects/      # 3-column featured projects grid & UI mockups
+│   │   ├── Modal/         # Interactive Project Detail Modal
 │   │   ├── DSAGitHub/     # Side-by-side LeetCode & GitHub cards
 │   │   ├── About/         # Professional background & verified developer spec
 │   │   ├── Skills/        # 6 categorical technical skill cards

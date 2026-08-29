@@ -1,12 +1,8 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Canvas } from '../3D/Common/Canvas';
-import { useFrame } from '@react-three/fiber';
-import { RoundedBox } from '@react-three/drei';
-import * as THREE from 'three';
-import { ArrowRight, ExternalLink, Github, Code2, Award, Terminal } from 'lucide-react';
+import { ArrowRight, ExternalLink, Github, Code2, Terminal, GitBranch, Star, CheckCircle, Activity, Award } from 'lucide-react';
 import { profiles } from '../../data';
 import { useGitHubStats } from '../../hooks';
 
@@ -29,53 +25,74 @@ export function DSAGitHub() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
           
-          {/* LEFT CARD: DSA JOURNEY matching reference */}
+          {/* LEFT CARD: DSA JOURNEY */}
           <motion.div
-            className="reference-card p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden min-h-[400px]"
-            initial={{ opacity: 0, y: 25 }}
+            className="reference-card p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden min-h-[380px]"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.45 }}
           >
-            {/* 3D Golden Rising Bar Chart Visual */}
-            <div className="absolute right-0 bottom-0 top-0 w-1/2 sm:w-5/12 pointer-events-none opacity-85">
-              <Canvas cameraPosition={[3, 2.5, 4.5]} fov={40} className="w-full h-full">
-                <GoldenBars3D />
-              </Canvas>
-            </div>
-
-            {/* Left Content */}
-            <div className="relative z-10 space-y-4 max-w-[280px] sm:max-w-xs">
-              <div>
-                <span className="text-xs font-mono text-[#D6A63A] uppercase tracking-wider block mb-1">
-                  LEETCODE VERIFIED
+            <div>
+              {/* Header */}
+              <div className="flex items-center justify-between mb-5">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-[#101215] border border-white/10 flex items-center justify-center text-[#D6A63A]">
+                    <Code2 className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-mono text-[#D6A63A] uppercase tracking-wider block">
+                      LEETCODE VERIFIED
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-bold text-[#F5F5F5]">
+                      DSA JOURNEY
+                    </h3>
+                  </div>
+                </div>
+                <span className="px-2.5 py-1 rounded-md bg-amber-500/10 text-[#F2C45E] border border-amber-500/20 text-xs font-mono font-semibold">
+                  50 Solved
                 </span>
-                <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-[#F5F5F5]">
-                  DSA JOURNEY
-                </h3>
               </div>
 
-              {/* Verified LeetCode Breakdown */}
-              <div className="space-y-1.5 py-1">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-3xl font-extrabold font-mono text-[#D6A63A]">50</span>
-                  <span className="text-xs text-[#A7A7A7] font-medium">Problems Solved</span>
+              {/* Progress & Breakdown visualization */}
+              <div className="space-y-4 py-2">
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between text-xs font-mono">
+                    <span className="text-[#A7A7A7]">Language Distribution</span>
+                    <span className="text-[#F2C45E]">50 / 300+ Target</span>
+                  </div>
+                  {/* Multi-segment progress bar */}
+                  <div className="h-2 w-full bg-[#12151B] rounded-full overflow-hidden flex">
+                    <div style={{ width: '82%' }} className="bg-[#D6A63A]" title="Python3: 41" />
+                    <div style={{ width: '10%' }} className="bg-[#1683FF]" title="Java: 5" />
+                    <div style={{ width: '8%' }} className="bg-[#27C93F]" title="MySQL: 4" />
+                  </div>
                 </div>
-                <div className="flex flex-wrap gap-2 text-[11px] font-mono text-[#A7A7A7]">
-                  <span className="px-2 py-0.5 rounded bg-[#101215] border border-white/5 text-[#F2C45E]">41 Python3</span>
-                  <span className="px-2 py-0.5 rounded bg-[#101215] border border-white/5 text-blue-400">5 Java</span>
-                  <span className="px-2 py-0.5 rounded bg-[#101215] border border-white/5 text-emerald-400">4 MySQL</span>
-                </div>
-                <p className="text-[11px] text-[#6F7378] font-mono pt-1">Target Roadmap: 300+ Problems</p>
-              </div>
 
-              <p className="text-xs text-[#A7A7A7] leading-relaxed">
-                Solving problems. Building logic. Becoming a better developer every day.
-              </p>
+                {/* Badges Grid */}
+                <div className="grid grid-cols-3 gap-2.5 pt-1">
+                  <div className="bg-[#101216] p-3 rounded-xl border border-white/5 text-center">
+                    <span className="text-[10px] font-mono text-[#6F7378] block">Python3</span>
+                    <span className="text-base sm:text-lg font-bold font-mono text-[#D6A63A]">41</span>
+                  </div>
+                  <div className="bg-[#101216] p-3 rounded-xl border border-white/5 text-center">
+                    <span className="text-[10px] font-mono text-[#6F7378] block">Java</span>
+                    <span className="text-base sm:text-lg font-bold font-mono text-[#1683FF]">5</span>
+                  </div>
+                  <div className="bg-[#101216] p-3 rounded-xl border border-white/5 text-center">
+                    <span className="text-[10px] font-mono text-[#6F7378] block">MySQL</span>
+                    <span className="text-base sm:text-lg font-bold font-mono text-green-400">4</span>
+                  </div>
+                </div>
+
+                <p className="text-xs text-[#A7A7A7] leading-relaxed pt-1">
+                  Solving algorithmic problems consistently across arrays, trees, dynamic programming, and SQL queries.
+                </p>
+              </div>
             </div>
 
             {/* CTA Button */}
-            <div className="relative z-10 pt-6">
+            <div className="pt-6">
               <a
                 href={leetcodeProfile?.url || 'https://leetcode.com/u/efImqpWfmd/'}
                 target="_blank"
@@ -88,53 +105,73 @@ export function DSAGitHub() {
             </div>
           </motion.div>
 
-          {/* RIGHT CARD: GITHUB ACTIVITY matching reference */}
+          {/* RIGHT CARD: GITHUB ACTIVITY */}
           <motion.div
             id="github"
-            className="reference-card p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden min-h-[400px]"
-            initial={{ opacity: 0, y: 25 }}
+            className="reference-card p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden min-h-[380px]"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.45, delay: 0.1 }}
           >
-            {/* 3D Holographic Globe Visual */}
-            <div className="absolute right-0 bottom-0 top-0 w-1/2 sm:w-5/12 pointer-events-none opacity-90">
-              <Canvas cameraPosition={[0, 0, 3.8]} fov={42} className="w-full h-full">
-                <HolographicGlobe3D />
-              </Canvas>
-            </div>
-
-            {/* Left Content */}
-            <div className="relative z-10 space-y-4 max-w-[280px] sm:max-w-xs">
-              <div>
-                <span className="text-xs font-mono text-[#1683FF] uppercase tracking-wider block mb-1">
-                  OPEN SOURCE & SYSTEMS
+            <div>
+              {/* Header */}
+              <div className="flex items-center justify-between mb-5">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-[#101215] border border-white/10 flex items-center justify-center text-[#1683FF]">
+                    <Github className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-mono text-[#1683FF] uppercase tracking-wider block">
+                      OPEN SOURCE & SYSTEMS
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-bold text-[#F5F5F5]">
+                      GITHUB ACTIVITY
+                    </h3>
+                  </div>
+                </div>
+                <span className="px-2.5 py-1 rounded-md bg-blue-500/10 text-[#1683FF] border border-blue-500/20 text-xs font-mono font-semibold">
+                  {publicRepos} Repos
                 </span>
-                <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-[#F5F5F5]">
-                  GITHUB ACTIVITY
-                </h3>
               </div>
 
-              {/* Verified Repositories Info */}
-              <div className="space-y-1.5 py-1">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-3xl font-extrabold font-mono text-[#1683FF]">{publicRepos}</span>
-                  <span className="text-xs text-[#A7A7A7] font-medium">Public Repositories</span>
-                </div>
-                <div className="flex flex-wrap gap-2 text-[11px] font-mono text-[#A7A7A7]">
-                  <span className="px-2 py-0.5 rounded bg-[#101215] border border-white/5 text-[#1683FF]">Full-Stack</span>
-                  <span className="px-2 py-0.5 rounded bg-[#101215] border border-white/5 text-purple-400">Local AI</span>
-                  <span className="px-2 py-0.5 rounded bg-[#101215] border border-white/5 text-green-400">Automation</span>
-                </div>
-              </div>
+              {/* Repositories Breakdown */}
+              <div className="space-y-4 py-2">
+                <div className="grid grid-cols-2 gap-2.5">
+                  <div className="bg-[#101216] p-3 rounded-xl border border-white/5">
+                    <div className="flex items-center gap-1.5 text-xs text-[#1683FF] font-semibold mb-1">
+                      <GitBranch className="w-3.5 h-3.5" />
+                      <span>Primary Repos</span>
+                    </div>
+                    <span className="text-sm font-bold text-[#F5F5F5] block">Meridian & Devil-In</span>
+                    <span className="text-[10px] text-[#6F7378]">RAG • GGUF Offline AI</span>
+                  </div>
 
-              <p className="text-xs text-[#A7A7A7] leading-relaxed">
-                Building in public. Contributing. Learning. Sharing architectures and toolkits.
-              </p>
+                  <div className="bg-[#101216] p-3 rounded-xl border border-white/5">
+                    <div className="flex items-center gap-1.5 text-xs text-green-400 font-semibold mb-1">
+                      <Activity className="w-3.5 h-3.5" />
+                      <span>Automation</span>
+                    </div>
+                    <span className="text-sm font-bold text-[#F5F5F5] block">n8n Lead Pipeline</span>
+                    <span className="text-[10px] text-[#6F7378]">Webhooks • CRM Sync</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-2 text-xs font-mono text-[#A7A7A7]">
+                  <span className="px-2.5 py-1 rounded-md bg-[#101215] border border-white/5 text-[#F2C45E]">Python 3.11</span>
+                  <span className="px-2.5 py-1 rounded-md bg-[#101215] border border-white/5 text-[#1683FF]">TypeScript</span>
+                  <span className="px-2.5 py-1 rounded-md bg-[#101215] border border-white/5 text-purple-400">FastAPI</span>
+                  <span className="px-2.5 py-1 rounded-md bg-[#101215] border border-white/5 text-emerald-400">PostgreSQL</span>
+                </div>
+
+                <p className="text-xs text-[#A7A7A7] leading-relaxed pt-1">
+                  Building open-source toolkits, air-gapped runtimes, and full-stack platforms with verified architecture patterns.
+                </p>
+              </div>
             </div>
 
             {/* CTA Buttons */}
-            <div className="relative z-10 pt-6 flex flex-wrap items-center gap-2.5">
+            <div className="pt-6 flex flex-wrap items-center gap-3">
               <a
                 href={githubProfile?.url || 'https://github.com/dharshan060708'}
                 target="_blank"
@@ -160,85 +197,5 @@ export function DSAGitHub() {
         </div>
       </div>
     </section>
-  );
-}
-
-// 3D Isometric Golden Rising Bars for DSA
-function GoldenBars3D() {
-  const groupRef = useRef<THREE.Group>(null);
-  const heights = [0.6, 0.9, 1.3, 1.7, 2.2, 2.6, 3.1];
-
-  useFrame((state) => {
-    if (!groupRef.current) return;
-    const time = state.clock.getElapsedTime();
-    groupRef.current.rotation.y = -0.4 + Math.sin(time * 0.4) * 0.04;
-  });
-
-  return (
-    <group ref={groupRef} position={[-0.4, -1.2, 0]}>
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[4, 6, 4]} intensity={1.5} color="#FFF5DB" />
-      <pointLight position={[1, 1, 2]} intensity={1.2} color="#D6A63A" distance={5} />
-
-      {heights.map((h, i) => {
-        const x = (i - 3) * 0.45;
-        const z = -(i - 3) * 0.35;
-        return (
-          <group key={i} position={[x, h / 2, z]}>
-            <RoundedBox args={[0.26, h, 0.26]} radius={0.03} smoothness={2}>
-              <meshStandardMaterial
-                color="#D6A63A"
-                roughness={0.2}
-                metalness={0.9}
-                emissive="#9E7420"
-                emissiveIntensity={0.2}
-              />
-            </RoundedBox>
-            {/* Peak node */}
-            <mesh position={[0, h / 2 + 0.03, 0]}>
-              <sphereGeometry args={[0.035, 8, 8]} />
-              <meshBasicMaterial color="#F2C45E" />
-            </mesh>
-          </group>
-        );
-      })}
-    </group>
-  );
-}
-
-// 3D Holographic Dark Blue Globe for GitHub
-function HolographicGlobe3D() {
-  const globeRef = useRef<THREE.Group>(null);
-
-  useFrame((state) => {
-    if (!globeRef.current) return;
-    const time = state.clock.getElapsedTime();
-    globeRef.current.rotation.y = time * 0.2;
-    globeRef.current.rotation.x = Math.sin(time * 0.15) * 0.08;
-  });
-
-  return (
-    <group ref={globeRef} position={[0.2, -0.1, 0]}>
-      <ambientLight intensity={0.4} />
-      <directionalLight position={[3, 3, 4]} intensity={1.2} color="#1683FF" />
-
-      {/* Core Dark Sphere */}
-      <mesh>
-        <sphereGeometry args={[1.25, 32, 32]} />
-        <meshStandardMaterial color="#060C18" roughness={0.7} metalness={0.4} />
-      </mesh>
-
-      {/* Wireframe Network Rings */}
-      <mesh>
-        <sphereGeometry args={[1.27, 16, 16]} />
-        <meshBasicMaterial color="#1683FF" wireframe transparent opacity={0.35} />
-      </mesh>
-
-      {/* Orbit Ring */}
-      <mesh rotation={[Math.PI / 3, 0, 0]}>
-        <torusGeometry args={[1.65, 0.015, 8, 32]} />
-        <meshBasicMaterial color="#1683FF" transparent opacity={0.6} />
-      </mesh>
-    </group>
   );
 }

@@ -18,14 +18,10 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          'three': ['three', '@react-three/fiber', '@react-three/drei'],
           'framer': ['framer-motion'],
           'vendor': ['react', 'react-dom', 'lucide-react'],
         },
       },
     },
-  },
-  optimizeDeps: {
-    include: ['three', '@react-three/fiber', '@react-three/drei'],
   },
 })
