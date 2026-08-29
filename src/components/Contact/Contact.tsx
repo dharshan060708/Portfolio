@@ -86,9 +86,9 @@ export function Contact() {
         {/* ================= 2. CONTACT SECTION ================= */}
         <div>
           <div className="max-w-2xl mb-12 sm:mb-16">
-            <div className="section-tag">05 — CONTACT</div>
+            <div className="section-tag">05 / CONTACT</div>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
-              LET&apos;S BUILD <span className="text-[#D4AF37]">SOMETHING</span>.
+              LET&apos;S WORK <span className="text-[#D4AF37]">TOGETHER</span>.
             </h2>
             <p className="text-base sm:text-lg text-[#8A8A8A] mt-3">
               Have an idea, project, or full-stack opportunity in mind? Feel free to reach out directly.

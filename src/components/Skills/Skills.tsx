@@ -66,7 +66,7 @@ export function Skills() {
         
         {/* Section Heading */}
         <div className="max-w-2xl mb-12 sm:mb-16">
-          <div className="section-tag">02 — SKILLS & EXPERTISE</div>
+          <div className="section-tag">02 / SKILLS</div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
             Tools and technologies I use to <span className="text-[#D4AF37]">build systems</span>.
           </h2>

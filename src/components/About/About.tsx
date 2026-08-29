@@ -41,7 +41,7 @@ export function About() {
           
           {/* Left Column: Heading & Impact Statement */}
           <div className="lg:col-span-5 space-y-4">
-            <div className="section-tag">01 — ABOUT ME</div>
+            <div className="section-tag">01 / ABOUT</div>
             
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
               Engineering with <span className="text-[#D4AF37]">precision</span>, curiosity, and purpose.

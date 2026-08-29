@@ -34,15 +34,15 @@ export function Projects() {
   };
 
   return (
-    <section id="projects" className="relative z-10 py-20 sm:py-24" aria-label="Featured Projects">
+    <section id="projects" className="relative z-10 py-20 sm:py-24" aria-label="Selected Work">
       <div className="section-container">
         
         {/* Section Heading */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-4">
           <div className="max-w-2xl">
-            <div className="section-tag">03 — FEATURED PROJECTS</div>
+            <div className="section-tag">03 / SELECTED WORK</div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-              Selected works & <span className="text-[#D4AF37]">case studies</span>.
+              Featured projects & <span className="text-[#D4AF37]">case studies</span>.
             </h2>
           </div>
           <p className="text-sm font-mono text-[#8A8A8A]">
@@ -52,7 +52,7 @@ export function Projects() {
 
         {/* ================= 1. LARGE FEATURED CASE STUDY: MERIDIAN ================= */}
         <motion.div
-          className="luxury-card p-6 sm:p-10 mb-8 sm:mb-10 relative overflow-hidden group cursor-pointer"
+          className="project-card luxury-card p-6 sm:p-10 mb-8 sm:mb-10 relative overflow-hidden group cursor-pointer transition-all duration-300 hover:border-[#D4AF37]/40"
           onClick={() => openModal(featuredProject)}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -73,7 +73,7 @@ export function Projects() {
               </div>
 
               <div>
-                <h3 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white group-hover:text-[#E6C65C] transition-colors">
+                <h3 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white group-hover:text-[#F0D56A] transition-colors">
                   {featuredProject.name}
                 </h3>
                 <p className="text-sm font-mono text-[#D4AF37] mt-1 uppercase tracking-wider">
@@ -87,7 +87,7 @@ export function Projects() {
 
               {/* Problem / Solution Snapshot */}
               <div className="p-4 rounded-xl bg-[#141414] border border-white/5 space-y-1.5">
-                <span className="text-[10px] font-mono text-[#D4AF37] uppercase font-bold tracking-wider">Core Breakthrough</span>
+                <span className="text-[10px] font-mono text-[#D4AF37] uppercase font-bold tracking-wider">Core Engineering Breakthrough</span>
                 <p className="text-xs text-[#D4D4D4] leading-relaxed">
                   Eliminates generic AI hallucinations by strictly grounding recommendations against verified PubMed clinical indices with sub-second response times.
                 </p>
@@ -115,7 +115,7 @@ export function Projects() {
                   className="btn-gold text-xs py-2.5 px-4"
                 >
                   <span>VIEW FULL CASE STUDY</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
 
                 {featuredProject.githubUrl && (
@@ -135,7 +135,7 @@ export function Projects() {
 
             {/* Right: Rich Interactive UI Preview (45%) */}
             <div className="lg:col-span-5 w-full">
-              <div className="rounded-2xl bg-[#080808] border border-white/10 p-5 space-y-4 shadow-xl">
+              <div className="rounded-2xl bg-[#080808] border border-white/10 p-5 space-y-4 shadow-xl group-hover:border-[#D4AF37]/30 transition-colors">
                 
                 {/* Simulated Triage Window Header */}
                 <div className="flex items-center justify-between pb-3 border-b border-white/10 text-xs font-mono">
@@ -188,7 +188,7 @@ export function Projects() {
           {secondaryProjects.map((project, idx) => (
             <motion.div
               key={project.id}
-              className="luxury-card p-6 sm:p-8 flex flex-col justify-between group cursor-pointer"
+              className="project-card luxury-card p-6 sm:p-8 flex flex-col justify-between group cursor-pointer transition-all duration-300 hover:border-[#D4AF37]/40"
               onClick={() => openModal(project)}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -206,7 +206,7 @@ export function Projects() {
                 </div>
 
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#E6C65C] transition-colors">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#F0D56A] transition-colors">
                     {project.name}
                   </h3>
                   <p className="text-xs font-mono text-[#8A8A8A] mt-1 uppercase">
@@ -259,7 +259,7 @@ export function Projects() {
           {remainingProjects.map((project, idx) => (
             <motion.div
               key={project.id}
-              className="luxury-card p-6 flex flex-col justify-between group cursor-pointer"
+              className="project-card luxury-card p-6 flex flex-col justify-between group cursor-pointer transition-all duration-300 hover:border-[#D4AF37]/40"
               onClick={() => openModal(project)}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -276,7 +276,7 @@ export function Projects() {
                   </span>
                 </div>
 
-                <h3 className="text-lg font-bold text-white group-hover:text-[#E6C65C] transition-colors">
+                <h3 className="text-lg font-bold text-white group-hover:text-[#F0D56A] transition-colors">
                   {project.name}
                 </h3>
 
@@ -297,7 +297,10 @@ export function Projects() {
               </div>
 
               <div className="pt-4 mt-3 border-t border-white/5 flex items-center justify-between text-xs font-mono">
-                <span className="text-[#D4AF37]">Case Study →</span>
+                <span className="text-[#D4AF37] flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                  <span>Case Study</span>
+                  <ArrowRight className="w-3 h-3" />
+                </span>
                 {project.githubUrl && (
                   <a
                     href={project.githubUrl}

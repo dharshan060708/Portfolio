@@ -51,7 +51,7 @@ export function Experience() {
         
         {/* Section Heading */}
         <div className="max-w-2xl mb-12 sm:mb-16">
-          <div className="section-tag">04 — EXPERIENCE & ACHIEVEMENTS</div>
+          <div className="section-tag">04 / EXPERIENCE</div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
             Academic milestones, <span className="text-[#D4AF37]">awards</span>, and journey.
           </h2>
