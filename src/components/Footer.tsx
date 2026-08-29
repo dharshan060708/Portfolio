@@ -1,79 +1,105 @@
-import { Mail, GitBranch, Link2, Code, Award } from "lucide-react"
-import { profile } from "@/data/portfolio"
-import { containerCustom } from "@/utils/styles"
+'use client';
+
+import React from 'react';
+import { Github, Linkedin, Mail, Code2, Award, ArrowUp } from 'lucide-react';
 
 export function Footer() {
-  const currentYear = 2026
+  const currentYear = new Date().getFullYear();
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
-    <footer className="relative border-t border-black-600 bg-black-950 section-contain">
-      <div className={containerCustom} style={{ position: 'relative', zIndex: 1 }}>
-        <div className="py-12 lg:py-16">
-          <div className="grid md:grid-cols-12 gap-8 mb-10">
-            {/* Column 1: Bio */}
-            <div className="md:col-span-6 space-y-4">
-              <div className="flex items-center gap-2">
-                <div className="h-8 w-8 rounded-lg overflow-hidden border border-gold-500/30 flex items-center justify-center bg-black-950">
-                  <img src="/logo.png" alt="DV Logo" className="h-full w-full p-1 object-contain" />
-                </div>
-                <span className="font-bold text-lg text-white font-mono">{profile.name}</span>
-              </div>
-              <p className="text-gold-500 font-medium text-sm">
-                {profile.headline} | {profile.subtitle}
-              </p>
-              <p className="text-gray-400 text-xs sm:text-sm max-w-md leading-relaxed">
-                {profile.description}
-              </p>
+    <footer className="relative z-10 border-t border-white/5 py-10 bg-[#050607]">
+      <div className="section-container">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          
+          {/* Left: DV — Dharshan Velumani */}
+          <div className="flex items-center gap-3">
+            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#D6A63A] via-[#F2C45E] to-[#B88A2E] flex items-center justify-center shadow-sm">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M4 6L9 18L12 11L15 18L20 6"
+                  stroke="#050607"
+                  strokeWidth="2.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </div>
-
-            {/* Column 2: Navigation */}
-            <div className="md:col-span-3 space-y-3">
-              <h4 className="text-xs font-mono uppercase tracking-wider text-gray-500 font-semibold">Navigation</h4>
-              <nav className="flex flex-col space-y-2 text-xs sm:text-sm">
-                <a href="#home" className="text-gray-400 hover:text-gold-500 transition-colors">Home</a>
-                <a href="#about" className="text-gray-400 hover:text-gold-500 transition-colors">About</a>
-                <a href="#focus" className="text-gray-400 hover:text-gold-500 transition-colors">What I Build</a>
-                <a href="#projects" className="text-gray-400 hover:text-gold-500 transition-colors">Projects</a>
-                <a href="#skills" className="text-gray-400 hover:text-gold-500 transition-colors">Skills</a>
-                <a href="#experience" className="text-gray-400 hover:text-gold-500 transition-colors">Experience</a>
-                <a href="#contact" className="text-gray-400 hover:text-gold-500 transition-colors">Contact</a>
-              </nav>
-            </div>
-
-            {/* Column 3: Profiles & Verified Links */}
-            <div className="md:col-span-3 space-y-3">
-              <h4 className="text-xs font-mono uppercase tracking-wider text-gray-500 font-semibold">Verified Links</h4>
-              <div className="flex flex-col space-y-2 text-xs sm:text-sm">
-                <a href={profile.links.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-400 hover:text-gold-500 transition-colors">
-                  <GitBranch className="h-4 w-4" />
-                  GitHub
-                </a>
-                <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-400 hover:text-gold-500 transition-colors">
-                  <Link2 className="h-4 w-4" />
-                  LinkedIn
-                </a>
-                <a href={profile.links.leetcode} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-400 hover:text-gold-500 transition-colors">
-                  <Code className="h-4 w-4" />
-                  LeetCode
-                </a>
-                <a href={profile.links.hackerrank} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-400 hover:text-gold-500 transition-colors">
-                  <Award className="h-4 w-4" />
-                  HackerRank
-                </a>
-                <a href={`mailto:${profile.email}`} className="flex items-center gap-2 text-gray-400 hover:text-gold-500 transition-colors">
-                  <Mail className="h-4 w-4" />
-                  Email
-                </a>
-              </div>
-            </div>
+            <span className="text-sm font-semibold text-[#F5F5F5]">
+              DV — Dharshan Velumani
+            </span>
           </div>
 
-          <div className="pt-6 border-t border-black-600/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-gray-500">
-            <p>© {currentYear} {profile.name}. All verified rights reserved.</p>
-            <p>Targeting Software Engineering & AI Automation Roles.</p>
+          {/* Center/Right: Profiles List matching reference */}
+          <div className="flex flex-wrap items-center justify-center gap-5 text-xs text-[#A7A7A7]">
+            <a
+              href="https://github.com/dharshan060708"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#F2C45E] transition-colors flex items-center gap-1.5"
+            >
+              <Github className="w-3.5 h-3.5" />
+              <span>GitHub</span>
+            </a>
+
+            <a
+              href="https://leetcode.com/u/efImqpWfmd/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#F2C45E] transition-colors flex items-center gap-1.5"
+            >
+              <Code2 className="w-3.5 h-3.5" />
+              <span>LeetCode</span>
+            </a>
+
+            <a
+              href="https://www.hackerrank.com/profile/dharshanvelumani"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#F2C45E] transition-colors flex items-center gap-1.5"
+            >
+              <Award className="w-3.5 h-3.5" />
+              <span>HackerRank</span>
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/dharshan-v-121341369/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#F2C45E] transition-colors flex items-center gap-1.5"
+            >
+              <Linkedin className="w-3.5 h-3.5" />
+              <span>LinkedIn</span>
+            </a>
+
+            <a
+              href="mailto:dharshanvelumani06@gmail.com"
+              className="hover:text-[#F2C45E] transition-colors flex items-center gap-1.5"
+            >
+              <Mail className="w-3.5 h-3.5" />
+              <span>Email</span>
+            </a>
           </div>
+
+          {/* Right / Top Button */}
+          <button
+            onClick={scrollToTop}
+            className="text-xs text-[#6F7378] hover:text-[#D6A63A] transition-colors flex items-center gap-1 p-1"
+            aria-label="Back to top"
+          >
+            <span>Top</span>
+            <ArrowUp className="w-3 h-3" />
+          </button>
+        </div>
+
+        {/* Bottom copyright line */}
+        <div className="mt-8 pt-6 border-t border-white/5 text-center text-xs text-[#6F7378] font-mono">
+          © {currentYear} Dharshan Velumani. All rights reserved.
         </div>
       </div>
     </footer>
-  )
+  );
 }

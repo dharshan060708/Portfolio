@@ -1,169 +1,168 @@
-# Dharshan Velumani — Developer Portfolio & Engineering Showcase
+# Dharshan Velumani — 3D Developer Portfolio
 
-[![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
-[![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=black)](https://reactjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+<div align="center">
 
-A recruiter-focused **Software Engineer Portfolio** built with React, TypeScript, and Tailwind CSS. Showcases core foundations in **Java, Python, SQL, Backend Development**, local LLM tooling (**llama.cpp / Ollama**), and workflow automation (**UiPath / n8n**).
+![Portfolio Preview Banner](https://img.shields.io/badge/Dharshan_Velumani-Portfolio_3D-D6A63A?style=for-the-badge)
+![React](https://img.shields.io/badge/React_18-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Three.js](https://img.shields.io/badge/Three.js-000000?style=for-the-badge&logo=three.js&logoColor=white)
+![React Three Fiber](https://img.shields.io/badge/R3F-1683FF?style=for-the-badge&logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38BDF8?style=for-the-badge&logo=tailwind-css&logoColor=black)
+![Vite](https://img.shields.io/badge/Vite_5-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 
----
+**A high-performance personal developer portfolio featuring a studio-photographed 3D developer workstation, quiet dark luxury aesthetic, and verified developer data.**
 
-## 📌 Project Overview
+[Live Demo](https://github.com/dharshan060708/Portfolio) • [Report Issue](https://github.com/dharshan060708/Portfolio/issues) • [LinkedIn](https://www.linkedin.com/in/dharshan-v-121341369/)
 
-- **Candidate**: Dharshan Velumani
-- **Role Target**: Aspiring Software Engineer | AI & Automation Developer
-- **Degree**: Bachelor of Computer Applications (BCA), KG College of Arts and Science (2024–2027, CGPA: 8.0/10)
-- **Live URL**: [dharshanvelumani.dev](https://dharshanvelumani.dev)
-
----
-
-## ✨ Features & Architecture
-
-### ⚡ Performance & Clean Architecture
-- **Compositor Transitions**: Hardware-friendly CSS scroll-reveal and staggered entry animations.
-- **Content Visibility**: Native `content-visibility: auto` on offscreen sections to optimize rendering.
-- **Tree-Shaken Bundles**: Optimized module splitting with Vite and minimal production bundle footprint.
-
-### 🔍 Project Case Studies & Exploration
-- **Live Search & Filter**: Real-time keyword filtering across project titles, tags, and technologies.
-- **Structured Case Study Modals**: Every project communicates `Problem → Architectural Solution → Technologies → Impact`.
-- **System Architecture Visualizations**: Monospaced ASCII data pipeline flows for major projects.
-
-### 💻 Developer CLI Terminal
-- **Interactive Terminal**: An integrated command-line interface supporting `about`, `stack`, `projects`, `skills`, `experience`, `education`, `achievements`, `status`, `resume`, `github`, and `contact`.
-- **Color Themes**: Real-time theme switching between `default`, `matrix` (CRT phosphor green), `amber` (retro amber), and `cyan` (cyberpunk) color modes.
-
-### ⌨️ Command Palette (`Ctrl+K` / `Cmd+K`)
-- Spotlight-style keyboard navigator for rapid section jumping and resume downloads.
-
-### 📱 Recruiter-First Accessibility & SEO
-- **Structured Data**: JSON-LD `Person` metadata for search engine indexing.
-- **PWA Ready**: Web App Manifest (`manifest.json`) and responsive mobile viewport optimizations.
-- **One-Click Contact & Copy**: Instant clipboard copying with feedback badges and direct contact submission with automatic email client fallback.
+</div>
 
 ---
 
-## 🛠️ Technical Stack
+## ✨ Features
 
-- **Frontend**: React 18, TypeScript, Tailwind CSS, Lucide React
-- **Animation**: Framer Motion 11, CSS Transitions
-- **Tooling & Build**: Vite 5, PostCSS, Autoprefixer, TypeScript Compiler (`tsc`)
-- **Deployment**: Vercel (`vercel.json` SPA configuration with caching & security headers)
+- **Photorealistic 3D Developer Workstation**:
+  - 27-inch 16:9 developer monitor with a physical **VS Code Dark IDE dynamic canvas texture** mapped directly onto the screen mesh (not a floating HTML div).
+  - Studio HDRI environment (`preset="city"`, `intensity=0.32`) with soft key lighting, cool monitor bounce fill, and warm desk lamp.
+  - Staggered mechanical keyboard with spacebar and modifier keys, ergonomic mouse, and desk mat.
+  - Secondary space-gray aluminum laptop with a local AI node terminal texture.
+  - High-resolution grounded contact shadows under all objects.
+  - Natural perspective camera (`fov: 39°`) with subtle mouse parallax.
+- **Quiet Dark Luxury Visual Design**:
+  - Velvety dark background (`#050607`), card surfaces (`#0B0D0F`), refined gold branding (`#D6A63A`), and subtle tech-blue (`#1683FF`) highlights.
+  - Spacious two-column Hero layout with status badge, headline, and action CTAs.
+  - 4-segment continuous Stats strip (`50` DSA Solved, `5+` Projects Built, `15+` Technologies, `∞` Always Learning).
+  - `— TECHNOLOGIES I WORK WITH —` horizontal pill strip.
+  - 3-column Featured Projects grid with rich, tailored UI preview mockups.
+  - Side-by-side DSA Journey (3D gold rising bars) & GitHub Activity (3D holographic globe).
+- **Single Source of Truth & Data Authenticity**:
+  - Centralized data layer in `src/data/` (`projects.ts`, `skills.ts`, `technologies.ts`, `profiles.ts`, `achievements.ts`).
+  - Verified LeetCode stats (**50 Solved**: 41 Python3, 5 Java, 4 MySQL, Goal 300+).
+  - Live GitHub API repository count fetching with 10-minute session caching and verified fallback.
+  - Truthful direct mail client dispatch in the Contact section.
+- **Production Performance**:
+  - Viewport-aware WebGL rendering loop (pauses when scrolled off-screen).
+  - Chunk splitting with Vite manual chunks for Three.js, Framer Motion, and React.
+  - Comprehensive OpenGraph and Twitter Card social metadata in `index.html`.
 
 ---
 
-## 📁 Project Structure
+## 🛠️ Tech Stack
 
-```text
-Portfolio/
-├── public/
-│   ├── Dharshan_Velumani_SoftwareDeveloper_Resume.pdf
-│   ├── apple-touch-icon.png
-│   ├── favicon.svg
-│   ├── manifest.json
-│   ├── og-image.png
-│   ├── robots.txt
-│   └── sitemap.xml
-├── src/
-│   ├── components/
-│   │   ├── About.tsx             # Academic & engineering background
-│   │   ├── Achievements.tsx      # Verified recognitions & awards
-│   │   ├── Certifications.tsx    # NPTEL Google Cloud credentials
-│   │   ├── CodingProfiles.tsx    # LeetCode, HackerRank, GitHub profiles
-│   │   ├── Contact.tsx           # Asynchronous contact & copy actions
-│   │   ├── Education.tsx         # BCA & HSC educational timeline
-│   │   ├── Experience.tsx        # Power BI internship details
-│   │   ├── Footer.tsx            # Recruiter-focused footer
-│   │   ├── GitHub.tsx            # Open-source repository showcases
-│   │   ├── Hero.tsx              # Primary positioning, CTAs & terminal preview
-│   │   ├── Navbar.tsx            # Navigation, scroll progress, Command Palette
-│   │   ├── Projects.tsx          # Featured & supporting project case studies
-│   │   ├── Skills.tsx            # Prioritized skills matrix
-│   │   ├── Terminal.tsx          # Interactive Developer CLI
-│   │   └── WhatIBuild.tsx        # 4 core engineering domains
-│   ├── data/
-│   │   └── portfolio.ts          # Centralized, verified single source of truth
-│   ├── hooks/
-│   │   ├── useMediaQuery.ts      # Responsive breakpoint listener
-│   │   └── useScrollAnimation.ts # High-performance intersection observer
-│   ├── utils/
-│   │   └── styles.ts             # Shared UI design tokens & class utility strings
-│   ├── App.tsx                   # Root layout & section sequence
-│   ├── index.css                 # Core design tokens, scroll-reveal classes
-│   ├── main.tsx                  # Application entry point
-│   └── vite-env.d.ts             # Vite client environment typing
-├── index.html                    # SEO, Open Graph & JSON-LD schema
-├── package.json                  # Dependencies & npm scripts
-├── tailwind.config.js            # Tailwind theme tokens & color palette
-├── tsconfig.json                 # TypeScript compiler configuration
-├── vercel.json                   # Vercel deployment & security headers
-└── vite.config.ts                # Vite build and path aliases
+- **Frontend Framework**: [React 18](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- **Build Tool**: [Vite 5](https://vitejs.dev/)
+- **3D Graphics**: [Three.js](https://threejs.org/) + [@react-three/fiber](https://docs.pmnd.rs/react-three-fiber) + [@react-three/drei](https://github.com/pmndrs/drei)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+
+---
+
+## 🚀 Quick Start
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/dharshan060708/Portfolio.git
+cd Portfolio
 ```
 
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js (v18.0.0 or higher)
-- npm (v9.0.0 or higher)
-
-### Installation
+### 2. Install dependencies
 ```bash
-# Clone repository
-git clone https://github.com/DharshanVelumani/Portfolio.git
-
-# Navigate to project directory
-cd Portfolio
-
-# Install dependencies
 npm install
 ```
 
-### Environment Variables
-Optionally create a `.env` file in the root directory:
-```env
-# Optional: Web3Forms access key for direct contact form submissions
-VITE_WEB3FORMS_ACCESS_KEY=your_web3forms_key_here
-```
-*(If omitted or unconfigured, the contact form automatically falls back to direct mail client handling).*
-
-### Development Server
+### 3. Start development server
 ```bash
 npm run dev
 ```
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-### Type Check & Production Build
+### 4. Build for production
 ```bash
-# Verify TypeScript typing
-npm run typecheck
-
-# Compile TypeScript & bundle production assets
 npm run build
+```
 
-# Preview production build locally
+### 5. Preview production build
+```bash
 npm run preview
 ```
 
 ---
 
-## ☁️ Deployment
+## 📂 Project Structure
 
-This project is configured for **Vercel** via [`vercel.json`](vercel.json):
-1. Push code to your GitHub repository:
-   ```bash
-   git add .
-   git commit -m "Deploy production portfolio"
-   git push origin main
-   ```
-2. Link the repository on [Vercel](https://vercel.com).
-3. Vercel will automatically detect Vite and run `npm run build` targeting `dist/`.
+```text
+├── public/                # Static public assets & favicons
+├── src/
+│   ├── components/        # React components
+│   │   ├── 3D/            # Three.js 3D workstation, canvases & modals
+│   │   │   ├── DeveloperDesk/   # 3D Developer Workstation with PBR textures
+│   │   │   ├── Common/          # Canvas wrapper with WebGL fallbacks
+│   │   │   └── Modal/           # Interactive Project Detail Modal
+│   │   ├── Hero/          # Hero section with 3D workstation
+│   │   ├── Navbar/        # Fixed navigation with gold active states
+│   │   ├── Stats/         # 4-segment unified stats container
+│   │   ├── Technologies/  # Horizontal tech badge strip
+│   │   ├── Projects/      # 3-column featured projects grid & UI mockups
+│   │   ├── DSAGitHub/     # Side-by-side LeetCode & GitHub cards
+│   │   ├── About/         # Professional background & verified developer spec
+│   │   ├── Skills/        # 6 categorical technical skill cards
+│   │   ├── Contact/       # Let's Build Something CTA & mail dispatch
+│   │   ├── Footer.tsx     # Minimal footer with verified profile links
+│   │   ├── LoadingScreen.tsx # Elegant initial loading screen
+│   │   └── CustomCursor.tsx  # Smooth fine-pointer custom cursor
+│   ├── data/              # Single source of truth data layer
+│   │   ├── projects.ts    # Verified projects with architecture descriptions
+│   │   ├── skills.ts      # Categorical skills without arbitrary percentages
+│   │   ├── technologies.ts # Normalized technology stack list
+│   │   ├── profiles.ts    # Verified social and coding profiles
+│   │   ├── achievements.ts # Verified education and awards
+│   │   └── index.ts       # Central data exports
+│   ├── hooks/             # Custom React hooks (device, GitHub stats, etc.)
+│   ├── utils/             # Helper utilities (cn, styling)
+│   ├── App.tsx            # Main application entry
+│   ├── index.css          # Tailwind CSS design system tokens
+│   └── main.tsx           # React DOM root
+├── index.html             # SEO, OpenGraph metadata, and fonts
+├── package.json           # Scripts and dependencies
+├── tailwind.config.js     # Custom color palette & radius tokens
+├── tsconfig.json          # TypeScript compiler configuration
+├── vercel.json            # Vercel deployment configuration
+└── vite.config.ts         # Vite build configuration & chunk splitting
+```
 
 ---
 
-## 📄 License & Attribution
+## 🌐 Deployment
 
-© 2026 Dharshan Velumani. Built with TypeScript, React, and Tailwind CSS.
+### Deploy to Vercel (Recommended)
+
+1. Push your code to GitHub.
+2. Go to [Vercel](https://vercel.com/) and click **New Project**.
+3. Import your `Portfolio` repository.
+4. Framework Preset: **Vite**
+5. Root Directory: `./`
+6. Click **Deploy**. The included `vercel.json` ensures all routes and assets work automatically.
+
+### Deploy to Netlify
+
+1. Connect your GitHub repository to [Netlify](https://www.netlify.com/).
+2. Build command: `npm run build`
+3. Publish directory: `dist`
+4. Click **Deploy Site**.
+
+---
+
+## 👨‍💻 Author
+
+**Dharshan Velumani**
+- **GitHub**: [@dharshan060708](https://github.com/dharshan060708)
+- **LeetCode**: [efImqpWfmd](https://leetcode.com/u/efImqpWfmd/)
+- **HackerRank**: [@dharshanvelumani](https://www.hackerrank.com/profile/dharshanvelumani)
+- **LinkedIn**: [Dharshan Velumani](https://www.linkedin.com/in/dharshan-v-121341369/)
+- **Email**: [dharshanvelumani06@gmail.com](mailto:dharshanvelumani06@gmail.com)
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).

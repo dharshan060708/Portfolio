@@ -1,31 +1,31 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@': '/src',
+      '@': path.resolve(__dirname, './src'),
     },
   },
+  esbuild: {
+    drop: ['console', 'debugger'],
+  },
   build: {
+    target: 'esnext',
     minify: 'esbuild',
-    cssCodeSplit: true,
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom', 'framer-motion', 'lucide-react'],
+          'three': ['three', '@react-three/fiber', '@react-three/drei'],
+          'framer': ['framer-motion'],
+          'vendor': ['react', 'react-dom', 'lucide-react'],
         },
-        chunkFileNames: 'assets/js/[name]-[hash].js',
-        entryFileNames: 'assets/js/[name]-[hash].js',
-        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
       },
     },
-    chunkSizeWarningLimit: 500,
   },
-  server: {
-    headers: {
-      'Cache-Control': 'public, max-age=31536000, immutable',
-    },
+  optimizeDeps: {
+    include: ['three', '@react-three/fiber', '@react-three/drei'],
   },
 })

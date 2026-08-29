@@ -1,56 +1,66 @@
-import { Navbar } from "./components/Navbar"
-import { Hero } from "./components/Hero"
-import { About } from "./components/About"
-import { WhatIBuild } from "./components/WhatIBuild"
-import { Projects } from "./components/Projects"
-import { Skills } from "./components/Skills"
-import { Experience } from "./components/Experience"
-import { Education } from "./components/Education"
-import { Certifications } from "./components/Certifications"
-import { Achievements } from "./components/Achievements"
-import { CodingProfiles } from "./components/CodingProfiles"
-import { GitHub } from "./components/GitHub"
-import { Contact } from "./components/Contact"
-import { Footer } from "./components/Footer"
-import { lazy, Suspense } from "react"
+'use client';
 
-const DeveloperTerminal = lazy(() => import("./components/Terminal").then(m => ({ default: m.DeveloperTerminal })))
+import React, { useState, useEffect } from 'react';
+import { AnimatePresence } from 'framer-motion';
+import { Navbar } from './components/Navbar/Navbar';
+import { Hero } from './components/Hero/Hero';
+import { Stats } from './components/Stats/Stats';
+import { Technologies } from './components/Technologies/Technologies';
+import { Projects } from './components/Projects/Projects';
+import { DSAGitHub } from './components/DSAGitHub/DSAGitHub';
+import { About } from './components/About/About';
+import { Skills } from './components/Skills/Skills';
+import { Contact } from './components/Contact/Contact';
+import { Footer } from './components/Footer';
+import { LoadingScreen } from './components/LoadingScreen';
+import { CursorProvider } from './components/CustomCursor';
+import './index.css';
 
-function TerminalSkeleton() {
+function App() {
+  const [isLoaded, setIsLoaded] = useState(false);
+
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12" aria-hidden="true">
-      <div className="h-64 bg-black-900/60 border border-black-600 rounded-xl animate-pulse flex items-center justify-center text-gray-500 font-mono text-xs">
-        Loading Developer Terminal...
-      </div>
-    </div>
-  )
-}
+    <CursorProvider>
+      <AnimatePresence mode="wait">
+        {!isLoaded && <LoadingScreen onComplete={() => setIsLoaded(true)} />}
+      </AnimatePresence>
 
-export function App() {
-  return (
-    <div className="min-h-screen bg-black-950 text-white relative font-sans selection:bg-gold-500/25 selection:text-white">
-      <div className="fixed inset-0 grid-pattern pointer-events-none opacity-20 z-0" aria-hidden="true" />
-      <div className="relative z-10">
+      <div className="relative min-h-screen bg-[#050607] text-[#F5F5F5] selection:bg-[#D6A63A]/30 selection:text-[#F2C45E]">
+        {/* Fixed Navigation Bar */}
         <Navbar />
-        <main id="main-content">
+
+        {/* Main Content Sections matching the exact sequence of the design reference */}
+        <main id="main-content" className="relative">
+          {/* 1. Hero with 3D Developer Workstation */}
           <Hero />
-          <About />
-          <WhatIBuild />
+
+          {/* 2. Horizontal Stats Strip */}
+          <Stats />
+
+          {/* 3. Technologies Strip */}
+          <Technologies />
+
+          {/* 4. Featured Projects Grid */}
           <Projects />
+
+          {/* 5. DSA Journey & GitHub Activity (Side-by-Side) */}
+          <DSAGitHub />
+
+          {/* 6. About Me */}
+          <About />
+
+          {/* 7. Technical Skills Matrix */}
           <Skills />
-          <Experience />
-          <Education />
-          <Certifications />
-          <Achievements />
-          <CodingProfiles />
-          <GitHub />
-          <Suspense fallback={<TerminalSkeleton />}>
-            <DeveloperTerminal />
-          </Suspense>
+
+          {/* 8. Let's Build Something CTA & Contact */}
           <Contact />
         </main>
+
+        {/* Minimal Footer */}
         <Footer />
       </div>
-    </div>
-  )
+    </CursorProvider>
+  );
 }
+
+export default App;
