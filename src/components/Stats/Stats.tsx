@@ -8,26 +8,26 @@ const statsData = [
   {
     icon: Code2,
     value: '50',
-    label: 'DSA Problems Solved',
+    label: 'LeetCode Solved',
     subtext: '41 Python • 5 Java • 4 SQL',
   },
   {
     icon: Rocket,
     value: '5+',
     label: 'Featured Projects',
-    subtext: 'AI, Automation & Web',
+    subtext: 'AI, Automation & Web Apps',
   },
   {
     icon: Layers,
     value: '15+',
-    label: 'Technologies',
-    subtext: 'Applied Engineering Stack',
+    label: 'Core Technologies',
+    subtext: 'Full Stack & AI Systems',
   },
   {
     icon: InfinityIcon,
     value: '∞',
-    label: 'Always Learning',
-    subtext: 'Curiosity & Consistency',
+    label: 'Continuous Learning',
+    subtext: 'Consistency & Logic',
   },
 ];
 
@@ -36,13 +36,13 @@ export function Stats() {
     <section className="relative z-10 py-6 sm:py-8" aria-label="Verified Statistics">
       <div className="section-container">
         <motion.div
-          className="bg-[#0B0D0F] border border-white/10 rounded-2xl p-4 sm:p-6 shadow-card"
+          className="luxury-card p-5 sm:p-7"
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
-          transition={{ duration: 0.45 }}
+          transition={{ duration: 0.4 }}
         >
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 divide-y sm:divide-y-0 lg:divide-x divide-white/5">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 divide-y sm:divide-y-0 lg:divide-x divide-white/[0.08]">
             {statsData.map((stat, index) => (
               <div
                 key={stat.label}
@@ -53,19 +53,19 @@ export function Stats() {
                 }`}
               >
                 {/* Icon box */}
-                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#101215] border border-white/10 flex items-center justify-center text-[#D6A63A] flex-shrink-0">
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#141414] border border-white/10 flex items-center justify-center text-[#D4AF37] flex-shrink-0">
                   <stat.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 
                 {/* Number & Label */}
                 <div>
-                  <div className="text-2xl sm:text-3xl font-extrabold font-mono text-[#D6A63A] leading-tight">
+                  <div className="text-2xl sm:text-3xl font-extrabold font-mono text-[#D4AF37] leading-tight">
                     {stat.value}
                   </div>
-                  <div className="text-xs sm:text-sm text-[#F5F5F5] font-semibold leading-snug">
+                  <div className="text-xs sm:text-sm text-white font-semibold leading-snug">
                     {stat.label}
                   </div>
-                  <div className="text-[10px] text-[#6F7378] font-mono mt-0.5">
+                  <div className="text-[10px] text-[#8A8A8A] font-mono mt-0.5">
                     {stat.subtext}
                   </div>
                 </div>

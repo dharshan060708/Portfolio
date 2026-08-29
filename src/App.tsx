@@ -1,15 +1,14 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { Navbar } from './components/Navbar/Navbar';
 import { Hero } from './components/Hero/Hero';
 import { Stats } from './components/Stats/Stats';
-import { Technologies } from './components/Technologies/Technologies';
-import { Projects } from './components/Projects/Projects';
-import { DSAGitHub } from './components/DSAGitHub/DSAGitHub';
 import { About } from './components/About/About';
 import { Skills } from './components/Skills/Skills';
+import { Projects } from './components/Projects/Projects';
+import { Experience } from './components/Experience/Experience';
 import { Contact } from './components/Contact/Contact';
 import { Footer } from './components/Footer';
 import { LoadingScreen } from './components/LoadingScreen';
@@ -25,34 +24,31 @@ function App() {
         {!isLoaded && <LoadingScreen onComplete={() => setIsLoaded(true)} />}
       </AnimatePresence>
 
-      <div className="relative min-h-screen bg-[#050607] text-[#F5F5F5] selection:bg-[#D6A63A]/30 selection:text-[#F2C45E]">
-        {/* Fixed Navigation Bar */}
+      <div className="relative min-h-screen bg-[#050505] text-white selection:bg-[#D4AF37]/30 selection:text-[#E6C65C]">
+        {/* Floating Glass Navbar */}
         <Navbar />
 
-        {/* Main Content Sections matching the exact sequence of the design reference */}
+        {/* Main Content Sections with Clear 01-05 Editorial Hierarchy */}
         <main id="main-content" className="relative">
-          {/* 1. Hero with 3D Developer Workstation */}
+          {/* Hero Section with 2D Architecture Studio */}
           <Hero />
 
-          {/* 2. Horizontal Stats Strip */}
+          {/* Key Metrics Strip */}
           <Stats />
 
-          {/* 3. Technologies Strip */}
-          <Technologies />
-
-          {/* 4. Featured Projects Grid */}
-          <Projects />
-
-          {/* 5. DSA Journey & GitHub Activity (Side-by-Side) */}
-          <DSAGitHub />
-
-          {/* 6. About Me */}
+          {/* 01 — About Me */}
           <About />
 
-          {/* 7. Technical Skills Matrix */}
+          {/* 02 — Skills & Expertise */}
           <Skills />
 
-          {/* 8. Let's Build Something CTA & Contact */}
+          {/* 03 — Featured Projects & Case Studies */}
+          <Projects />
+
+          {/* 04 — Experience & Achievements */}
+          <Experience />
+
+          {/* 05 — Resume & Contact */}
           <Contact />
         </main>
 

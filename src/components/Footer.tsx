@@ -1,104 +1,89 @@
 'use client';
 
 import React from 'react';
-import { Github, Linkedin, Mail, Code2, Award, ArrowUp } from 'lucide-react';
+import { Github, Linkedin, Mail, Code2, ArrowUp } from 'lucide-react';
+import { profiles } from '../data';
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const githubLink = profiles.find((p) => p.name === 'GitHub')?.url || 'https://github.com/dharshan060708';
+  const linkedinLink = profiles.find((p) => p.name === 'LinkedIn')?.url || 'https://www.linkedin.com/in/dharshan-v-121341369/';
+  const leetcodeLink = profiles.find((p) => p.name === 'LeetCode')?.url || 'https://leetcode.com/u/efImqpWfmd/';
+
   return (
-    <footer className="relative z-10 border-t border-white/5 py-10 bg-[#050607]">
-      <div className="section-container">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+    <footer className="relative z-10 border-t border-white/[0.08] bg-[#050505] py-12 sm:py-16 text-[#8A8A8A]">
+      <div className="section-container space-y-10">
+        
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pb-8 border-b border-white/5">
           
-          {/* Left: DV — Dharshan Velumani */}
-          <div className="flex items-center gap-3">
-            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#D6A63A] via-[#F2C45E] to-[#B88A2E] flex items-center justify-center shadow-sm">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M4 6L9 18L12 11L15 18L20 6"
-                  stroke="#050607"
-                  strokeWidth="2.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
-            <span className="text-sm font-semibold text-[#F5F5F5]">
-              DV — Dharshan Velumani
-            </span>
+          {/* Brand Info */}
+          <div className="space-y-1">
+            <h4 className="text-lg font-extrabold text-white font-mono tracking-tight">
+              DHARSHAN VELUMANI<span className="text-[#D4AF37]">.</span>
+            </h4>
+            <p className="text-xs font-mono text-[#8A8A8A]">
+              Full Stack & AI Developer • Coimbatore, India
+            </p>
           </div>
 
-          {/* Center/Right: Profiles List matching reference */}
-          <div className="flex flex-wrap items-center justify-center gap-5 text-xs text-[#A7A7A7]">
+          {/* Social Links */}
+          <div className="flex items-center gap-2.5">
             <a
-              href="https://github.com/dharshan060708"
+              href={githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[#F2C45E] transition-colors flex items-center gap-1.5"
+              className="social-chip"
+              aria-label="GitHub Profile"
             >
-              <Github className="w-3.5 h-3.5" />
-              <span>GitHub</span>
+              <Github className="w-4 h-4" />
             </a>
-
             <a
-              href="https://leetcode.com/u/efImqpWfmd/"
+              href={linkedinLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[#F2C45E] transition-colors flex items-center gap-1.5"
+              className="social-chip"
+              aria-label="LinkedIn Profile"
             >
-              <Code2 className="w-3.5 h-3.5" />
-              <span>LeetCode</span>
+              <Linkedin className="w-4 h-4" />
             </a>
-
-            <a
-              href="https://www.hackerrank.com/profile/dharshanvelumani"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#F2C45E] transition-colors flex items-center gap-1.5"
-            >
-              <Award className="w-3.5 h-3.5" />
-              <span>HackerRank</span>
-            </a>
-
-            <a
-              href="https://www.linkedin.com/in/dharshan-v-121341369/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#F2C45E] transition-colors flex items-center gap-1.5"
-            >
-              <Linkedin className="w-3.5 h-3.5" />
-              <span>LinkedIn</span>
-            </a>
-
             <a
               href="mailto:dharshanvelumani06@gmail.com"
-              className="hover:text-[#F2C45E] transition-colors flex items-center gap-1.5"
+              className="social-chip"
+              aria-label="Send Email"
             >
-              <Mail className="w-3.5 h-3.5" />
-              <span>Email</span>
+              <Mail className="w-4 h-4" />
+            </a>
+            <a
+              href={leetcodeLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-chip"
+              aria-label="LeetCode Profile"
+            >
+              <Code2 className="w-4 h-4" />
             </a>
           </div>
 
-          {/* Right / Top Button */}
+        </div>
+
+        {/* Bottom Bar with Back to Top */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
+          <p className="text-[#8A8A8A] text-center sm:text-left">
+            © 2026 Dharshan Velumani. Crafted with React, TypeScript & Tailwind CSS.
+          </p>
+
           <button
             onClick={scrollToTop}
-            className="text-xs text-[#6F7378] hover:text-[#D6A63A] transition-colors flex items-center gap-1 p-1"
-            aria-label="Back to top"
+            className="flex items-center gap-1.5 text-[#D4AF37] hover:text-white transition-colors"
           >
-            <span>Top</span>
-            <ArrowUp className="w-3 h-3" />
+            <span>BACK TO TOP</span>
+            <ArrowUp className="w-3.5 h-3.5" />
           </button>
         </div>
 
-        {/* Bottom copyright line */}
-        <div className="mt-8 pt-6 border-t border-white/5 text-center text-xs text-[#6F7378] font-mono">
-          © {currentYear} Dharshan Velumani. All rights reserved.
-        </div>
       </div>
     </footer>
   );
